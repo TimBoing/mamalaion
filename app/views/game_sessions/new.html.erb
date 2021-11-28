@@ -1,0 +1,37 @@
+<div class="main-container">
+  <div class="title-container centered-vertically "><h1><span id="#home-page-title">WikiRace</span></h1></div>
+  <div class="content-container centered-vertically">
+    <div class="white-container centered-vertically">
+      <% if user_signed_in? %>
+
+          <%= simple_form_for @game_session, html: { id: 'home-page-options' } do |f| %>
+              <%= f.submit t('.create_game'), class: "btn-tim", id: "red-pill" %>
+          <% end %>
+
+          <%= text_field_tag "name", "", placeholder: t('.enter_code'), id: "round-input" %>
+          <div class="info-bubble-join" id="info-bubble-join">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <%= button_tag t('.join'),class: "btn-tim", id: "blue-pill" %>
+
+
+      <% else %>
+        <%= link_to t('.play'), new_user_session_path, class: "btn-tim", id:"welcome-btn" %>
+        <%= link_to t('.quick_play'), new_game_sessions_quick_path, class: "btn-tim", id:"welcome-btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="not-visible" id="locale"><%= "#{locale}" %></div>
+
+<div class="modal-info-join">
+  <div id="modal-info-join">
+    <span><%= t('.code_to_join') %><a href="#close" id="close-join">&#215;</a></span>
+    <p><%= t('.join_info') %></p>
+    <p><em><strong><%= t('.note') %></strong> <%= t('.join_info_note') %></em></p>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,106 @@
+<div class="main-container">
+  <div class="title-container centered-vertically "><h1><span id="final-winner"><%= t('.final_score') %></span></h1></div>
+  <div class="content-container centered-vertically">
+
+    <div class="white-container centered-vertically" id="score-page-record-container">
+        <i class="fas fa-trophy trophy"></i>
+        <h4><%= t('.won_by') %> <strong class="trophy"><%= @players.first.username %></strong></h4>
+    </div>
+
+    <div class="cards">
+
+      <% rank = 1 %>
+      <% @players.each do |player| %>
+        <div class="card" data-player="<%= player.id %>">
+
+          <div class="card-left-side">
+            <div class="card-rank-container">
+              <div class="card-rank"><%= rank %></div>
+            </div>
+            <div class="card-username"><%= player.username %></div>
+          </div>
+
+          <div class="card-right-side">
+            <div class="card-score"><%=  player.total_score_for(@game_session) %> pts</div>
+            <div class="card-avatar-container">
+              <% if player.photo.attached? %>
+                <%= image_tag player.photo, class: "card-avatar" %>
+              <% else %>
+                <%= cl_image_tag "wikipadia_ytkglo.jpg", class: "card-avatar"%>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      <% rank += 1 %>
+      <% end %>
+
+    </div>
+
+    <% @players.each do |player| %>
+      <div id="rounds-info-modal-player-<%= player.id %>" class="modal">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <span id="rounds-info-modal-close-player-<%= player.id %>" class="close">&times;</span>
+          </div>
+
+          <div class="centered-vertically game-font">
+            <% if @players.first.username == player.username %>
+              <h2 class="parcours-title"><%= t('.congrat') %> <%= player.username %> ! <%= t('.mastered') %> <i class="fas fa-dragon"></i> </h2>
+            <% else %>
+              <h2 class="parcours-title"><%= t('.summary') %><%= player.username %>!</h2>
+            <% end %>
+            <div class="time-and-score">
+              <p><%= t('.Tpoints') %> <%= player.total_score_for(@game_session) %> </p>
+              <p><%= t('.Tclicks') %> <%= player.total_clicks_for(@game_session) %> </p>
+            </div>
+
+            <div style="display: flex; align-items: center; flex-direction: column;">
+              <% round_counter = 0 %>
+              <% @rounds.each do |round| %>
+                <% if round.round_participations.where(user: player) == [] || round.round_participations.where(user: player).last.end_time.nil? %>
+                  <div class="round-recap">
+                    <% round_counter += 1 %>
+                    <div class="round-index-rank">
+                      <h4 class="rank-nrb">Round : <%= round_counter %></h4>
+                    </div>
+                    <% if %>
+                      <p><%= t('.rank') %> <%= t('.missing') %> </p>
+                      <p><%= t('.score') %> <%= t('.missing') %> </p>
+                      <p><%= t('.clicks') %> <%= t('.missing') %> </p>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <div class="round-recap">
+                    <% round_counter += 1 %>
+                    <div class="round-index-rank">
+                      <% if round.round_participations.where(user: player)[0].rank == 1 %>
+                        <i class="fas fa-trophy trophy" id="round-trophy"></i>
+                      <% end %>
+                      <h4 class="rank-nrb">Round : <%= round_counter %></h4>
+                      <% if round.round_participations.where(user: player)[0].rank == 1 %>
+                        <i class="fas fa-trophy trophy" id="round-trophy"></i>
+                      <% end %>
+                    </div>
+                    <% if %>
+                      <p><%= t('.rank') %> <%= round.round_participations.where(user: player)[0].rank %></p>
+                      <p><%= t('.score') %> <%= round.round_participations.where(user: player)[0].score %></p>
+                      <p><%= t('.clicks') %> <%= round.round_participations.where(user: player)[0].visited_pages.count - 1 %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
+    <div class="white-container centered-vertically">
+      <%= link_to t('.home'), root_path, class: "btn-tim", id:"button-home"%>
+    </div>
+  </div>
+</div>
+

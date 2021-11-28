@@ -1,0 +1,32 @@
+<div class="main-container">
+  <div class="title-container centered-vertically "><h1><span><%= @creator.username %> <%= t('.invited_you') %></span></h1></div>
+  <div class="content-container centered-vertically">
+    <div class="white-container centered-vertically">
+      <% if @round.state == nil %>
+        <p class="display-messages-no-round"><%= t('.not_existing') %></p>
+      <% elsif @round.state == "initiated" %>
+        <%= link_to t('.join'), round_round_participations_path, method: :post, class:"btn-tim", id:"btn-join"  %>
+      <% elsif @round.state == "playing" %>
+        <p class="display-messages-no-round"><%= t('.already_started') %></p>
+      <% elsif @round.state == "ended" %>
+        <p class="display-messages-no-round"><%= t('.already_played') %></p>
+      <% else %>
+        <p class="display-messages-no-round"><%= t('.issue') %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    App['game_session_channel_<%= @game_session.id %>'] = App.cable.subscriptions.create(
+    { channel: 'GameSessionChannel', game_session_id: <%= @game_session.id %> },
+    {received: (data) => {
+      if (data.new_round_link_off) {
+        const replayButtonForPlayer = document.querySelector('#btn-join');
+        replayButtonForPlayer.outerHTML = data.new_round_link_off;
+      } else {}
+      }
+    })
+  </script>
+<% end %>

@@ -1,0 +1,127 @@
+<div class="main-container">
+  <div class="title-container centered-vertically "><h1><span id="score-page-winner">Round <%= @game_session.rounds.count %> : <%= @sorted_round_participations.first.user.username %> <%= t('.win') %></span></h1></div>
+  <div class="content-container centered-vertically">
+
+    <div class="white-container centered-vertically" id="score-page-record-container">
+      <% if @sorted_round_participations.first.is_the_best?(locale) %>
+        <i class="fas fa-trophy trophy"></i>
+        <h4><%= @sorted_round_participations.first.user.username %> <%= t('.beat_record') %> <strong class="trophy"><%= @sorted_round_participations.first.visited_pages.count - 1 %></strong> clicks</h4>
+      <% else %>
+        <h4><%= t('.no_record') %></h4>
+        <i class="fas fa-heart-broken trophy"></i>
+      <% end %>
+    </div>
+
+
+
+    <div class="cards">
+      <% @players.each do |player| %>
+        <div class="card" data-player="<%= player.id %>">
+          <div class="card-left-side">
+            <div class="card-rank-container">
+              <div class="card-rank">
+                <%= player.round_participations.select{|round_participation| round_participation.round == @round }[0].rank %></div>
+              </div>
+            <div class="card-username"><%= player.username %></div>
+          </div>
+          <div class="card-right-side">
+            <div class="card-score"><%= player.round_participations.select{|round_participation| round_participation.round == @round }[0].score %> pts</div>
+            <div class="card-avatar-container">
+              <% if player.photo.attached? %>
+                <%= image_tag player.photo, class: "card-avatar" %>
+              <% else %>
+                <%= cl_image_tag "wikipadia_ytkglo.jpg", class: "card-avatar"%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+
+    <% @players.each do |player| %>
+      <div id="path-info-modal-player-<%= player.id %>" class="modal">
+        <div class="modal-content">
+
+
+          <div class="modal-header">
+            <span id="path-info-modal-close-player-<%= player.id %>" class="close">&times;</span>
+          </div>
+
+
+          <div class="centered-vertically game-font">
+
+
+            <h2 class="parcours-title"><%= t('.path') %> <%= player.username %>!</h2>
+            <div class="time-and-score">
+              <% time_gap = player.round_participations.select{|round_participation| round_participation.round == @round }[0].end_time.to_i - @round.start_time.to_i %>
+              <% seconds_elapsed = ((time_gap / 1000) % 60).to_i %>
+              <% minutes_elapsed = ((time_gap / 1000) / 60 % 60).to_i %>
+              <% hours_elapsed = ((time_gap / 1000) / 60 / 60 % 60).to_i  %>
+              <p><%= t('.time') %> <%= hours_elapsed %>h <%= minutes_elapsed %>min <%= seconds_elapsed %>s</p>
+              <p><%= t('.clicks') %> <%= player.round_participations.select{|round_participation| round_participation.round == @round }[0].visited_pages.count - 1 %></p>
+            </div>
+
+
+            <div style="display: flex; align-items: center; flex-direction: column;">
+              <% counter = 0 %>
+              <% player.round_participations.select{|round_participation| round_participation.round == @round }[0].visited_pages.each do |visited_page| %>
+                <% counter += 1 %>
+                  <p style="margin-bottom: 20px;"><%= counter %> : <%= visited_page.title %></p>
+                  <% if @round.end_page != visited_page.title %>
+                    <i class="fas fa-chevron-circle-down chevrons"></i>
+                  <% end %>
+              <% end %>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
+
+
+    <div class="white-container centered-vertically" id="score-page-buttons-container">
+      <% if current_user.id == @game_session.user_id %>
+        <%= link_to t('.new_round'), new_game_session_round_path(@game_session), class: "btn-tim", id: "launch-new-round" %>
+      <% else %>
+        <% if @next_round.state == 'imminent' %>
+        <% raise %>
+          <%= link_to t('.new_round'), new_game_session_round_path(@game_session), class: "btn-tim", id: "launch-new-round" %>
+        <% elsif @next_round.state == 'playing' %>
+          <button class="player_replay_button btn-tim main-red" style="opacity: 0.5;"><i><%= t('.already_started') %></i></button>
+        <% else %>
+          <button class="player_replay_button btn-tim main-red" style="opacity: 0.5;"><i><%= t('.waiting_for') %> <%= @game_session.user.username %></i></button>
+        <% end %>
+      <% end %>
+      <%= link_to t('.end_game'), game_session_rounds_path(@game_session), class: "btn-tim", id: "go-to-round-index" %>
+    </div>
+  </div>
+</div>
+
+
+
+<% content_for :after_js do %>
+  <script>
+    App['game_session_channel_<%= @game_session.id %>'] = App.cable.subscriptions.create(
+    { channel: 'GameSessionChannel', game_session_id: <%= @game_session.id %> },
+    {received: (data) => {
+      if (data.new_round_link_off) {
+        const replayButtonForPlayer = document.querySelector('.main-red');
+        replayButtonForPlayer.outerHTML = data.new_round_link_off;
+      } else if (data.new_round_link) {
+        const replayButtonForPlayer = document.querySelector('.player_replay_button');
+        replayButtonForPlayer.outerHTML = data.new_round_link;
+      } else {}
+      }
+    })
+  </script>
+<% end %>
+
+
+
+
+
+

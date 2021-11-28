@@ -1,0 +1,162 @@
+<div class="main-container">
+  <div class="title-container centered-vertically"><h1><%= t('.for_round') %> <%= @game_session.rounds.count + 1%></h1></div>
+  <div class="content-container centered-vertically">
+    <div class="white-container centered-vertically">
+    <%= simple_form_for @round, url: game_session_rounds_path(@game_session), html:{class:"centered-vertically"} do |f| %>
+      <%= f.button :submit,t('.play'), class: "btn-tim", id:"to-fire-camp" %>
+      <%= button_tag t('.options'),type: 'button', class: "btn-tim", id:"round-options-btn" %>
+      <div id="round-options-modal" class="modal">
+        <div id="round-options-modal-content" class="modal-content">
+          <div id="round-options-modal-header">
+            <span class="close" id="close-round-options">&times;</span>
+          </div>
+          <div class="centered-vertically" id="round-options-modal-content-after-header">
+
+            <div class="info-container-title-icon">
+              <div class="title-and-chevron" id="pages-choice">
+                <i class="fas fa-chevron-down chevron" style="display: block"></i>
+                <i class="fas fa-chevron-up chevron" style="display: none"></i>
+                <div class="title-container centered-vertically white-shadow "><h4><%= t('.pages') %></h4></div>
+              </div>
+              <div class="info-bubble-pages" id="info-bubble-pages">
+                <i class="fas fa-info-circle"></i>
+              </div>
+            </div>
+            <div id="pages-choice-collapsible" style="display: none">
+              <div id="grid-container-options">
+                <div id="easy-path" class="little-btn main-green"><%= t('.easy_path') %></div>
+                <div id="random-path" class="little-btn main-red"><%= t('.random_path') %></div>
+              </div>
+
+              <div id="page-choice-container">
+                <%= f.input :start_page, label: false, label: t('.start_page'), :collection => @wiki_pages, :prompt => t('.random_page'), input_html: {class: "js-select2"} %>
+                <%= f.input :end_page, label: false, label: t('.target_page'), :collection => @wiki_pages, :prompt => t('.random_page'), input_html: {class: "js-select2"}  %>
+                <div class="not-visible" id="local-language"><%= "#{locale}" %></div>
+              </div>
+
+              <div id="nombre-de-clicks-record">
+                <p><%= t('.no_record') %></p>
+              </div>
+            </div>
+
+            <div class="info-container-title-icon">
+              <div class="title-and-chevron" id="modes-choice">
+                <i class="fas fa-chevron-down chevron" style="display: block"></i>
+                <i class="fas fa-chevron-up chevron" style="display: none"></i>
+                <div class="title-container centered-vertically white-shadow "><h4><%= t('.mode') %></h4></div>
+              </div>
+              <div class="info-bubble-modes" id="info-bubble-modes">
+                <i class="fas fa-info-circle"></i>
+              </div>
+            </div>
+            <div id="modes-choice-collapsible" style="display: none">
+              <%= hidden_field_tag :game_mode, 'Premier arrivé' %>
+              <div id="grid-container-options" style="opacity : 0.5">
+                <div class="grid-option" id="grid-option-time-limit">
+                  <i class="far fa-clock"></i>
+                  <div class="title-option"><%= t('.time_limit') %></div>
+                  <div class="validation-option">
+                    <i class="fas fa-check"></i>
+                  </div>
+                </div>
+
+                <div class="grid-option" id="grid-option-click-limit">
+                  <i class="fas fa-mouse-pointer"></i>
+                  <div class="title-option"><%= t('.click_limit') %></div>
+                  <div class="validation-option">
+                    <i class="fas fa-check"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-container-title-icon">
+              <div class="title-and-chevron" id="options-choice">
+                <i class="fas fa-chevron-down chevron" style="display: block"></i>
+                <i class="fas fa-chevron-up chevron" style="display: none"></i>
+                <div class="title-container centered-vertically white-shadow "><h4><%= t('.options') %> :</h4></div>
+              </div>
+              <div class="info-bubble-options" id="info-bubble-options">
+                <i class="fas fa-info-circle"></i>
+              </div>
+            </div>
+            <div id="options-choice-collapsible" style="display: none;">
+              <div id="grid-container-options">
+                <div class="grid-option selectable-option selected" id="grid-option-search-bar">
+                  <i class="fas fa-search"></i>
+                  <div class="title-option"><%= t('.search_bar') %></div>
+                  <div class="validation-option">
+                    <i class="fas fa-check"></i>
+                  </div>
+                </div>
+                <div class="grid-option selectable-option" id="grid-option-reverse">
+                  <i class="fas fa-sync-alt"></i>
+                  <div class="title-option"><%= t('.reverse') %></div>
+                  <div class="validation-option">
+                    <i class="fas fa-check"></i>
+                  </div>
+                </div>
+              </div>
+              <div id="grid-container-options">
+                <div class="grid-option selectable-option selected" id="grid-option-back">
+                  <i class="fas fa-chevron-circle-left"></i>
+                  <div class="title-option"><%= t('.back') %></div>
+                  <div class="validation-option">
+                    <i class="fas fa-check"></i>
+                  </div>
+                </div>
+                <div class="grid-option selectable-option" id="grid-option-where_is_charlie">
+                  <div class="title-option"><%= t('.where_is_html') %></div>
+                  <div class="validation-option">
+                    <i class="fas fa-check"></i>
+                  </div>
+                </div>
+              </div>
+
+              <%= f.input :game_options, label: false,
+                collection: ['Standard', 'Solo', 'Avec questions', 'Sans aide de recherche', 'Où est Charlie', 'Battlefield', 'Sens-interdit'],
+                default: 'Standard' %>
+              <div class="not-visible">
+                <%= f.input :search_bar, default: true %>
+                <%= f.input :reverse, default: false %>
+                <%= f.input :back, default: true %>
+                <%= f.input :charlie, default: false %>
+              </div>
+            </div>
+          <%= button_tag t('.play'),type: 'submit', class: "btn-tim", id:"round-options-ok-btn" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="modal-info-pages">
+  <div id="modal-info-pages">
+    <span><%= t('.pages_info_title') %><a href="#close" id="close-pages">&#215;</a></span>
+    <p><strong><%= t('.default_pages') %></strong></p>
+    <p><em><strong><%= t('.note') %></strong> <%= t('.pages_info') %></em></p>
+  </div>
+</div>
+
+<div class="modal-info-modes">
+  <div id="modal-info-modes">
+    <span><%= t('.modes_info_title') %><a href="#close" id="close-modes">&#215;</a></span>
+    <p><strong><%= t('.first_arrived') %> :</strong> <%= t('.default_mode') %> <%= t('.first_arrived_info') %></p>
+    <p><strong><%= t('.time_limit') %> : <%= t('.TODO') %></strong> <%= t('.time_limit_info') %></p>
+    <p><strong><%= t('.click_limit') %> : <%= t('.TODO') %></strong> <%= t('.click_limit_info') %></p>
+    <p><em><strong><%= t('.note') %></strong> <%= t('.combine_modes') %></em></p>
+  </div>
+</div>
+
+<div class="modal-info-options">
+  <div id="modal-info-options">
+    <span><%= t('.options_info_title') %><a href="#close" id="close-options">&#215;</a></span>
+    <p><strong><%= t('.search_bar') %> :</strong> <%= t('.default') %> <%= t('.search_bar_info') %></p>
+    <p><strong><%= t('.reverse') %> :</strong> <%= t('.reverse_info_html') %></p>
+    <p><strong><%= t('.back') %> :</strong> <%= t('.default') %> <%= t('.back_info') %></p>
+    <p><strong><%= t('.where_is_html') %> :</strong> <%= t('.where_is_info_html') %></p>
+    <p><em><strong><%= t('.note') %></strong> <%= t('.combine_options') %></em></p>
+  </div>
+</div>
+

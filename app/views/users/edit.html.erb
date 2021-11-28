@@ -1,0 +1,28 @@
+<div class="main-container" id="gs-show-main-container">
+  <div class="title-container centered-vertically">
+    <h1>
+      <% if @user.first_name != nil && @user.first_name != "" %>
+        <%= @user.username%>, <%= t('.update_profile') %>!
+      <% else %>
+        <%= t('fill_profile') %>
+      <% end %>
+    </h1>
+  </div>
+  <div class="content-container centered-vertically">
+    <div class="white-container centered-vertically">
+
+      <%= simple_form_for @user do |f| %>
+        <h2><%= t('.data') %></h2>
+        <%= f.input :first_name, label: false, label: t('.surname') %>
+        <%= f.input :last_name, label: false, label: t('.name') %>
+        <%= f.input :username, label: false, label: t('.username') %>
+        <h2><%= t('.picture') %></h2>
+        <%= f.input :photo, label: false %>
+        <%= f.submit t('.update'), class:'btn-tim main-red mx-auto' %>
+      <% end %>
+
+      <%= link_to t('.back'), :back %>
+
+    </div>
+  </div>
+</div>

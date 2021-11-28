@@ -1,0 +1,105 @@
+<div class="main-container">
+  <div class="title-container centered-vertically "><h1><span><%= t('profile') %></span></h1></div>
+  <div class="content-container centered-vertically">
+    <div class="white-container centered-vertically add-margin-records-page">
+      <div>
+        <i class="fas fa-money-bill-wave"></i>
+        <%= t('.coins') %> <%= current_user.coins %> <%= t('.monney') %>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <i class="fas fa-fire"></i>
+          <%= t('.in_stock') %> <%= current_user.item1 %>
+        </div>
+        <div class="col-sm">
+          <i class="fas fa-fire-extinguisher"></i>
+          <%= t('.in_stock') %> <%= current_user.item2 %>
+        </div>
+        <div class="col-sm">
+          <i class="fas fa-random"></i>
+          <%= t('.in_stock') %> <%= current_user.item3 %>
+        </div>
+        <div class="col-sm">
+          <i class="fas fa-ghost"></i>
+          <%= t('.in_stock') %> <%= current_user.item4 %>
+        </div>
+        <div class="col-sm">
+          <i class="fas fa-plus-square"></i>
+          <%= t('.in_stock') %> <%= current_user.item5 %>
+        </div>
+      </div>
+    </div>
+
+    <div class="title-and-chevron" id="world-records-list-title">
+      <i class="fas fa-chevron-down chevron" style="display: block"></i>
+      <i class="fas fa-chevron-up chevron" style="display: none"></i>
+      <div class="title-container centered-vertically white-shadow "><h3><span><%= t('.world_records') %> <strong><%= @world_records.count %></strong></span></h3></div>
+    </div>
+    <div class="record-cards not-visible" id="world-records-list" style="display: none">
+      <% @world_records.each do |world_record| %>
+        <div class="card record-card" data-game_session="<%= world_record.id %>">
+          <div class="begin-page">
+            <div class="color-red"><i class="fas fa-play"></i></div>
+            <% if world_record.start_page.title.length > 20 %>
+              <div class="keep-all"><%= world_record.start_page.title.first(20) %>...</div>
+            <% else %>
+              <div class="keep-all"><%= world_record.start_page.title %></div>
+            <% end %>
+          </div>
+          <div class="content-page">
+            <div class="record-content color-red"><%= world_record.points.count - 1 %> </div>
+            <div class="record-contentv keep-all">clicks</div>
+          </div>
+          <div class="content-page">
+            <div class="record-content color-red"><%= world_record.duration.to_i / 1000 %></div>
+            <div class="record-content keep-all">secondes</div>
+          </div>
+          <div class="begin-page">
+            <div class="color-red"><i class="fas fa-bullseye"></i></div>
+            <% if world_record.end_page.title.length > 20 %>
+              <div class="keep-all"><%= world_record.end_page.title.first(20) %>...</div>
+            <% else %>
+              <div class="keep-all"><%= world_record.end_page.title %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="title-and-chevron" id="personal-records-list-title">
+      <i class="fas fa-chevron-down chevron" style="display: block"></i>
+      <i class="fas fa-chevron-up chevron" style="display: none"></i>
+      <div class="title-container centered-vertically white-shadow"><h3><%= t('.personal_records') %> <strong><%= @personal_records.count %></strong></h3></div>
+    </div>
+    <div class="record-cards" id="personal-records-list" style="display: none">
+      <% @personal_records.each do |personal_record| %>
+        <div class="card record-card" data-game_session="<%= personal_record.id %>">
+          <div class="begin-page">
+            <div class="color-red"><i class="fas fa-play"></i></div>
+            <% if personal_record.round.start_page.length > 20 %>
+              <div class="keep-all"><%= personal_record.round.start_page.first(20) %>...</div>
+            <% else %>
+              <div class="keep-all"><%= personal_record.round.start_page %></div>
+            <% end %>
+          </div>
+          <div class="content-page">
+            <div class="record-content color-red"><%= personal_record.visited_pages.count - 1 %> </div>
+            <div class="record-contentv keep-all">clicks</div>
+          </div>
+          <div class="content-page">
+            <div class="record-content color-red"><%= (personal_record.end_time.to_i - personal_record.round.start_time.to_i) / 1000 %></div>
+            <div class="record-content keep-all"><%= t('.seconds') %></div>
+          </div>
+          <div class="begin-page">
+            <div class="color-red"><i class="fas fa-bullseye"></i></div>
+            <% if personal_record.visited_pages.last.title.length > 20 %>
+              <div class=""><%= personal_record.visited_pages.last.title.first(20) %>...</div>
+            <% else %>
+              <div class=""><%= personal_record.visited_pages.last.title %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

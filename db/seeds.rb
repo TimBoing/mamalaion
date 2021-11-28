@@ -7,6 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Creating new users..."
+user_solo_fr = User.create!(email: "mode@solo.fr", password: "123456", first_name: "Mode", last_name: "Solo",coins: 0, username: "ModeSoloFR")
+user_solo_en = User.create!(email: "mode@solo.en", password: "123456", first_name: "Mode", last_name: "Solo",coins: 0, username: "ModeSoloEN")
+
+
 user_1 = User.create!(email: "1player1@test.com", password: "123456", first_name: "Mama", last_name: "Laion",coins: 0, username: "MamaLaion")
 # user_solo_fr.save!
 

@@ -1,0 +1,170 @@
+<div class="main-container" id="gs-show-main-container">
+  <div class="title-container centered-vertically"><h1><%= t('.campfire') %></h1></div>
+  <div class="content-container centered-vertically">
+    <div class="white-container centered-vertically">
+      <%= button_tag t('.invite_friends'),type: 'button', class: "btn-tim", id:"invite-friends-btn" %>
+      <%if current_user.id == @game_session.user_id  %>
+        <%= simple_form_for @round do |f| %>
+          <%= hidden_field_tag :start_game, true %>
+          <%= f.button :submit, t('.start_game'), class: "btn-tim", id: "btn-start-game" %>
+        <% end %>
+      <% else %>
+        <%= button_tag "Round Info",type: 'button', class: "btn-tim", id:"round-info-btn" %>
+      <%end  %>
+      <p id="nbr-player-connected"><%= t('.participants', count: @round.round_participations.count) %></p>
+    </div>
+
+    <div id="create-message" class="white-container">
+      <div id="message-input">
+        <%= simple_form_for [@game_session, Message.new], remote: true do |f| %>
+          <%= f.input :content, label: false, placeholder: t('.placeholder') %>
+        <% end %>
+      </div>
+
+      <div class="messages">
+        <% @game_session.messages.each do |message| %>
+          <%= render "messages", message: message %>
+        <% end %>
+        <% @round.round_participations.each do |round_participation| %>
+        <p class="new-connection">- <%= User.find(round_participation.user_id).username %> <%= t('.has_joined') %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="invite-friends-modal" class="modal">
+    <div id="invite-friends-modal-content" class="modal-content">
+      <div id="invite-friends-modal-header">
+        <span class="close" id="close-invite-friends">&times;</span>
+      </div>
+      <div class="centered-vertically" id="invite-friends-modal-content-after-header">
+        <h4 class="parcours-title" style="margin-bottom: 10px;"><%= t('.invite') %></h4>
+        <p><%= t('.code') %><strong id="round-id-link"><%= @round.id %></strong></p>
+        <p><i class="fas fa-sort invit-arrow"></i></p>
+        <p><%= t('.QRcode') %></p>
+        <br>
+        <img style="max-width: 150px;" src=<%= "http://api.qrserver.com/v1/create-qr-code/?data=http://www.wikirace.xyz/rounds/#{@round.id}/round_participations/new/&size=[150]x[150]" %> alt="Le QR Code pour rejoindre la partie" title="QR Code" />
+        <br>
+        <p><i class="fas fa-sort  invit-arrow"></i></p>
+        <p><%= t('.link') %></p>
+        <button id="copy-button" class="btn-tim main-red"><%= t('.copy_link') %></button>
+        <input id="url" style="opacity: 0;" type="text" value="http://www.wikirace.xyz/rounds/<%= @round.id %>/round_participations/new" readonly></input>
+      </div>
+    </div>
+  </div>
+
+  <div id="round-info-modal" class="modal">
+    <div id="round-info-modal-content" class="modal-content">
+      <div id="round-info-modal-header">
+        <span class="close" id="close-round-info">&times;</span>
+      </div>
+      <div class="centered-vertically" id="round-info-modal-content-after-header">
+        <h3><%= t('.game_details') %></h3>
+
+        <div class="info-option-container">
+          <% if  @round.start_page_random == false %>
+             <h4 class="text-center"><i class="fas fa-play-circle"></i> <%= t('.starting_page') %></h4><p><%= @round.start_page %></p>
+          <% else %>
+            <h4 class="text-center"><i class="fas fa-play-circle"></i> <%= t('.starting_page') %></h4><p><%= t('.random_page') %></p>
+          <% end %>
+        </div>
+        <div class="info-option-container">
+          <% if  @round.end_page_random == false %>
+            <h4 class="text-center"><i class="fas fa-bullseye"></i> <%= t('.target_page') %></h4><p class="mb-0"><%= @round.end_page %></p>
+          <% else%>
+            <h4 class="text-center"><i class="fas fa-bullseye"></i> <%= t('.target_page') %></h4><p class="mb-0"><%= t('.random_page') %></p>
+          <% end %>
+        </div>
+
+        <div class="info-option-container">
+          <h4 class="text-center"><%= t('.game_mode') %><br></h4><p><%= @round.game_mode %></p>
+          <p class="text-center"><i><%= t('.game_mode_description') %></i></p>
+        </div>
+
+        <% if @round.game_options != nil %>
+          <div class="info-option-container">
+            <h4 class="text-center"><%= t('.game_options') %><br></h4>
+            <p><%= t('.search_bar') %><%= @round.search_bar ? t('.is_on') : t('.is_off') %></p>
+            <p><%= t('.reverse') %><%= @round.reverse ? t('.is_on') : t('.is_off') %></p>
+            <p><%= t('.back') %><%= @round.back ? t('.is_on') : t('.is_off') %></p>
+          </div>
+        <% end %>
+        <%= button_tag "OK",type: 'button', class: "btn-tim", id:"ok-btn" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<audio id="message-received" preload="true">
+ <source src='/new_message.mp3' type="audio/mpeg">
+</audio>
+
+<audio id="player-joined" preload="true">
+ <source src='/player_joining.mp3' type="audio/mpeg">
+</audio>
+
+<audio id="link-copied" preload="true">
+ <source src='/link_click.mp3' type="audio/mpeg">
+</audio>
+
+<% content_for :after_js do %>
+  <script>
+    const messageReceived = document.getElementById('message-received');
+    messageReceived.play;
+
+    App['game_session_channel_<%= @game_session.id %>'] = App.cable.subscriptions.create(
+    { channel: 'GameSessionChannel', game_session_id: <%= @game_session.id %> },
+    {received: (data) => {
+        if (data.message_partial === undefined && data.player === undefined && data.end_game === undefined) {
+          window.location = '<%= round_path(@round) %>';
+
+        } else if (data.content === undefined && data.player === undefined && data.end_game === undefined) {
+          const messagesContainer = document.querySelector('.messages');
+          messagesContainer.insertAdjacentHTML('afterbegin', data.message_partial);
+          if (data.current_user_id == <%= current_user.id %>) {
+            const  input = document.querySelector('#message_content');
+            input.value = '';
+          }
+          const messageReceived = document.getElementById('message-received');
+          const messageReceivedPromise = messageReceived.play();
+          messageReceived.currentTime = 0;
+          if (messageReceivedPromise !== undefined) {
+            messageReceivedPromise.then(function() {
+              messageReceived.play();
+            }).catch(function(error) {
+              messageReceived.play();
+              console.log("Probleme de chargement du son pour message recu!");
+            });
+          }
+        } else if (data.content === undefined && data.message_partial === undefined && data.end_game === undefined) {
+          const playerConnected = document.querySelector('.messages');
+          playerConnected.insertAdjacentHTML('afterbegin', `<p class="new-connection">- ${data.player} <%= t('.has_joined') %></p>`);
+          const numberOfPlayers = document.getElementById('nbr-player-connected');
+          numberOfPlayers.innerText = data.connected
+          const playerJoinSong = document.getElementById('player-joined');
+          const playerJoinSongPromise = playerJoinSong.play();
+          playerJoinSong.currentTime = 0;
+          if (playerJoinSongPromise !== undefined) {
+            playerJoinSongPromise.then(function() {
+              playerJoinSong.play();
+            }).catch(function(error) {
+              playerJoinSong.play();
+              console.log("Probleme de chargement du son pour player joined!");
+            });
+          }
+        } else if (data.content === undefined && data.message_partial === undefined && data.player === undefined) {
+          console.log('modal pop up');
+
+        } else {
+          console.log('canard');
+        }
+      }
+    })
+  </script>
+<% end %>
+
+
+
+
+
+

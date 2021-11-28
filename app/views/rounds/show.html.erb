@@ -1,0 +1,182 @@
+<!-- Tracking the mouse with coordinates---------- -->
+  <!-- <div id="top-mouse">Top mouse : 0</div>
+  <div id="left-mouse">Left mouse : 0</div> -->
+<!-- --------------------------------------------- -->
+
+  <div class="container-fluid d-flex align-items-center justify-content-center">
+    <div id="game-container" class="" >
+
+      <h1 id="wikipage-title-container"></h1>
+      <div id="wikipage-container">
+        <!-- <div id="portal-test" class="small-portal"></div> -->
+      </div>
+
+      <div id="quit-icon-container">
+        <%= link_to "#{@host_name}#{root_path}", class: "quit-btn" do %>
+          <i class="far fa-times-circle" id="quit-icon"></i>
+        <% end %>
+      </div>
+
+
+      <div id="path-icon-container">
+          <i class="fas fa-route" id="path-icon"></i>
+      </div>
+
+
+      <!-- <div id="game-actions-bar-top">
+
+          <i class="fas fa-search" id="game-actions-search"></i>
+
+          <div id="userFindInput" class="hidden">
+              <input id="userFindInputText" type="text" value="" style="border: none;"/>
+          </div>
+
+          <i class="fas fa-poo-storm" id="game-actions-weapons"></i>
+
+      </div> -->
+
+      <% if @round.search_bar %>
+        <div id="game-actions-search">
+          <div id="search-icon-container">
+            <i class="fas fa-search" id="search-icon"></i>
+          </div>
+          <input id="seach-field" type="text" value=""></>
+        </div>
+      <% end %>
+
+
+      <div id="game-actions-bar">
+        <% if @round.back %>
+          <i class="fas fa-chevron-circle-left" id="action-previous-page"></i>
+        <% else %>
+          <div> </div>
+        <% end %>
+        <div id="timer-container">00:00:00</div>
+
+        <i class="fas fa-bullseye" id="action-target-page"></i>
+      </div>
+    </div>
+</div>
+
+<div id="info-your-target-modal" class="modal">
+  <div id="info-your-target-modal-content" class="modal-content">
+    <div id="info-your-target-modal-header">
+      <span class="close" id="info-close">&times;</span>
+    </div>
+    <div id="info-your-target-modal-container">
+      <div id="info-game-counter"><%= t('.stating_in') %> </div>
+      <div id="info-game-mode"><%= t('.game_mode_is') %> <%= @round.game_mode %></div>
+      <h1 id="info-game-end-page-title-container"></h1>
+      <div id="info-game-end-page-container"></div>
+      <div id="info-game-counter-big"></div>
+    </div>
+  </div>
+</div>
+
+<div id="game-path-modal" class="modal">
+  <div class="modal-content justified">
+    <span class="close" id="close-game-path-modal">&times;</span>
+    <h1><%= t('.current_path') %></h1>
+    <div id="beginning-of-the-path" class="centered-vertically"></div>
+  </div>
+</div>
+
+<div id="game-end-modal" class="modal">
+  <div class="modal-content centered-vertically">
+    <h1><%= t('.round_ended') %></h1>
+    <h2 id="game-end-modal-winner"><%= t('.winner_is') %> </h2>
+    <%= link_to t('.results'), "#{@host_name}#{round_round_participations_path(@round)}", class: "btn-tim", id:"to-results-btn" %>
+  </div>
+</div>
+
+<audio id="malus-reverse" preload="true">
+ <source src='/reverse.wav' type="audio/wav">
+</audio>
+
+<audio id="link-clicked" preload="true">
+ <source src='/link_click.mp3' type="audio/mpeg">
+</audio>
+
+<audio id="victory-song" preload="true">
+ <source src='/victory.mp3' type="audio/mpeg">
+</audio>
+
+<audio id="loosing-song" preload="true">
+ <source src='/loosing.mp3' type="audio/mpeg">
+</audio>
+
+<div id="game-info"
+  data-current-user="<%= current_user.id %>"
+  data-round="<%= @round.id %>"
+  data-state= "init"
+  data-winner= ""
+  data-start-page="<%= @round.start_page %>"
+  data-end-page="<%= @round.end_page %>"
+  data-current-page="<%= @round.start_page %>"
+  data-participation = "<%= @round_participation_id  %>"
+  data-game-mode = "<%= @round.game_mode %>"
+  data-start-time = "<%= @round.start_time %>"
+  data-malus-sender = ""
+  data-malus = "none"
+  data-reverse = "<%= @round.reverse %>"
+  data-charlie = "<%= @round.charlie %>"
+  data-language = "<%= locale %>">>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    App['game_session_channel_<%= @game_session.id %>'] = App.cable.subscriptions.create(
+    { channel: 'GameSessionChannel', game_session_id: <%= @game_session.id %> },
+    {received: (data) => {
+      console.log(data);
+      const gameInfo = document.getElementById('game-info');
+      const gameEndModalWinner = document.getElementById('game-end-modal-winner');
+
+      if(data['end_game']){
+        gameInfo.dataset.winner = data['end_game'];
+        gameEndModalWinner.innerText= `Winner is : ${gameInfo.dataset.winner}`
+        gameInfo.dataset.state = "ended";
+
+// TODO: les sons de victoire et de défaite à inclure mais JS ne connait pas "current user" donc faut faire différement
+        // if (gameInfo.dataset.winner == current_user) {
+        //   const messageReceived = document.getElementById('victory-song');
+        //   const messageReceivedPromise = messageReceived.play();
+        //   messageReceived.currentTime = 0;
+        //   if (messageReceivedPromise !== undefined) {
+        //     messageReceivedPromise.then(function() {
+        //       messageReceived.play();
+        //     }).catch(function(error) {
+        //       messageReceived.play();
+        //       console.log("Probleme de chargement du son pour la victoire!");
+        //     });
+        //   }
+        // } else {
+        //   const messageReceived = document.getElementById('loosing-song');
+        //   const messageReceivedPromise = messageReceived.play();
+        //   messageReceived.currentTime = 0;
+        //   if (messageReceivedPromise !== undefined) {
+        //     messageReceivedPromise.then(function() {
+        //       messageReceived.play();
+        //     }).catch(function(error) {
+        //       messageReceived.play();
+        //       console.log("Probleme de chargement du son pour la defaite!");
+        //     });
+        //   }
+        // }
+
+
+      }else if(data['malus']){
+        console.log('there is a malus');
+        console.log(data['malus']);
+        gameInfo.dataset.sender = data['malus']['sender'];
+        gameInfo.dataset.malus = data['malus']['type'];
+      }
+
+    }
+
+    })
+  </script>
+<% end %>
+
+
+
