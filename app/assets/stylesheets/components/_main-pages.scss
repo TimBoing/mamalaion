@@ -1,0 +1,83 @@
+.main-container{
+  position: relative;
+  background: asset-url('maze.jpg');
+  width:100%;
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+
+  .title-container {
+    width: 100%;
+    text-align: center;
+    height:15vh;
+    margin-top: 10px;
+
+
+    h1 {
+      font: $game-clean-font;
+      color: black;
+      text-shadow: 1px 1px 2px white;
+    }
+  }
+
+  .content-container{
+    width: 100%;
+    min-height:70vh;
+    font: $game-clean-font;
+  }
+}
+
+.opaque-container {
+  background-color: rgba(255,255,255,1);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+
+}
+
+.centered-vertically {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+}
+
+.white-container{
+  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+  //box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 2px black;
+  width: 80%;
+  height: 90%;
+}
+
+// .glass-container {
+//   background: inherit;
+//   width: 80%;
+//   height: 80%;
+//   border: 1px solid black;
+
+//   &:before{
+//    content: “”;
+//    background: inherit;
+//    box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.3);
+//    filter: blur(10px);
+//   }
+// }
+
+.title-and-chevron{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .chevron{
+    font-size: 24px;
+  }
+
+  .fa-chevron-up {
+  display: none;
+  }
+}
+

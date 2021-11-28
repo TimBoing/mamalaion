@@ -1,0 +1,28 @@
+// .zoom-effect {
+//   filter: blur(1px);
+//   transform: scale(2);
+// }
+
+.disapear-effect {
+  //background-color: red;
+  display: none;
+}
+
+.appear-effect {
+  //background-color: red;
+  display: block;
+}
+
+.reverse-effect {
+  transform: rotate(180deg);
+}
+
+
+.search-bar-inactive {
+
+}
+
+.search-bar-active {
+
+
+}

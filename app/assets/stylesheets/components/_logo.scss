@@ -1,0 +1,12 @@
+#logo {
+  height: 50px;
+  width: 50px;
+  background: asset-url("wikirace-logo2.png");
+  background-position: center;
+  background-size: cover;
+  &:hover {
+    background: asset-url("wikirace-logo.png");
+    background-position: center;
+    background-size: cover;
+  }
+}

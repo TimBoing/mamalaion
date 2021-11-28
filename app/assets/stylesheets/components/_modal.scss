@@ -1,0 +1,351 @@
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 15; /* Sit on top */
+  padding: 2%;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+.modal-header{
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+#modal-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  padding: 2%;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 10px;
+
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  background: #55acee;
+  border-bottom: 3px solid #3D90D0;
+  border-radius: 3px;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.button:hover {
+  background: #56BBEE;
+}
+
+.button:active {
+  margin-top: 3px;
+  border-bottom: 0px solid transparent;
+}
+
+.button .fa,
+.button p {
+  margin-right: 10px;
+  display: inline;
+}
+
+.button p {
+  margin-right: 0;
+}
+
+
+.info-bubble-join{
+  float: right;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+.info-bubble-join:hover{
+  color: $main-red;
+}
+
+.modal-info-join{
+  position:fixed;
+  left:0;
+  display: none;
+  right:0;
+  top:0;
+  bottom:0;
+  z-index:100;
+  background-color:rgba(50,50,50,0.5);
+  overflow: auto;
+  max-height: 100vh;
+}
+
+#modal-info-join{
+  position: relative;
+  background-color: #F5F5F6;
+  margin: 0 5vh 25vh 5vh;
+  top: 35%;
+  z-index:101;
+  border-radius:15px;
+  overflow: hidden;
+  box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
+  flex-direction: column;
+}
+
+#modal-info-join span{
+  font-weight: bold;
+  display: block;
+  background: $main-green;
+  padding: 10px;
+  color:#fff;
+}
+
+#modal-info-join p{
+  text-align: justify;
+  padding: 10px;
+}
+
+#close-join{
+  float: right;
+  color: #fff;
+  font-family: serif;
+  font-size: 15px;
+}
+
+#close-join:hover{
+  color: #000;
+}
+
+
+
+.info-bubble-pages{
+  float: right;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+.info-bubble-pages:hover{
+  color: $main-red;
+}
+
+.modal-info-pages{
+  position:fixed;
+  left:0;
+  display: none;
+  right:0;
+  top:0;
+  bottom:0;
+  z-index:100;
+  background-color:rgba(50,50,50,0.5);
+  overflow: auto;
+  max-height: 100vh;
+}
+
+#modal-info-pages{
+  position: relative;
+  background-color: #F5F5F6;
+  margin: 0 5vh 25vh 5vh;
+  top: 35%;
+  z-index:101;
+  border-radius:15px;
+  overflow: hidden;
+  box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
+  flex-direction: column;
+}
+
+#modal-info-pages span{
+  font-weight: bold;
+  display: block;
+  background: $main-green;
+  padding: 10px;
+  color:#fff;
+}
+
+#modal-info-pages p{
+  text-align: justify;
+  padding: 10px;
+}
+
+#close-pages{
+  float: right;
+  color: #fff;
+  font-family: serif;
+  font-size: 15px;
+}
+
+#close-pages:hover{
+  color: #000;
+}
+
+
+.info-bubble-modes{
+  float: right;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+.info-bubble-modes:hover{
+  color: $main-red;
+}
+
+.modal-info-modes{
+  position:fixed;
+  left:0;
+  display: none;
+  right:0;
+  top:0;
+  bottom:0;
+  z-index:100;
+  background-color:rgba(50,50,50,0.5);
+  overflow: auto;
+  max-height: 100vh;
+}
+
+#modal-info-modes{
+  position: relative;
+  background-color: #F5F5F6;
+  margin: 0 5vh 25vh 5vh;
+  top: 35%;
+  z-index:101;
+  border-radius:15px;
+  overflow: hidden;
+  box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
+  flex-direction: column;
+}
+
+#modal-info-modes span{
+  font-weight: bold;
+  display: block;
+  background: $main-green;
+  padding: 10px;
+  color:#fff;
+}
+
+#modal-info-modes p{
+  text-align: justify;
+  padding: 10px;
+}
+
+#close-modes{
+  float: right;
+  color: #fff;
+  font-family: serif;
+  font-size: 15px;
+}
+
+#close-modes:hover{
+  color: #000;
+}
+
+
+.info-bubble-options{
+  float: right;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+.info-bubble-options:hover{
+  color: $main-red;
+}
+
+.modal-info-options{
+  position:fixed;
+  left:0;
+  display: none;
+  right:0;
+  top:0;
+  bottom:0;
+  z-index:100;
+  background-color:rgba(50,50,50,0.5);
+  overflow: auto;
+  max-height: 100vh;
+}
+
+#modal-info-options{
+  position: relative;
+  background-color: #F5F5F6;
+  margin: 0 5vh 25vh 5vh;
+  top: 35%;
+  z-index:101;
+  border-radius:15px;
+  overflow: hidden;
+  box-shadow:0 0 10px 0 rgba(0,0,0,0.3);
+  flex-direction: column;
+}
+
+#modal-info-options span{
+  font-weight: bold;
+  display: block;
+  background: $main-green;
+  padding: 10px;
+  color:#fff;
+}
+
+#modal-info-options p{
+  text-align: justify;
+  padding: 10px;
+}
+
+#close-options{
+  float: right;
+  color: #fff;
+  font-family: serif;
+  font-size: 15px;
+}
+
+#close-options:hover{
+  color: #000;
+}
+
+#close-game-path-modal{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+
+}
+
+.justified{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    color: $main-red;
+  }
+
+}
+
