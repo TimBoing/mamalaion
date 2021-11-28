@@ -1,0 +1,2 @@
+class WikiPagesController < ApplicationController
+end
