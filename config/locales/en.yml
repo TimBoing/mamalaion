@@ -1,33 +1,312 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+
+  activerecord:
+    models:
+      game_session: "Game session"
+      message: "Message"
+      path: "Path"
+      point: "Point"
+      round: "Round"
+      round_participation: "Round participation"
+      user: "User"
+      visited_page: "Visited page"
+      wiki_page: "Wiki page"
+    attributes:
+      game_session:
+      message:
+        content: "Content"
+      path:
+        duration: "Duration"
+      point:
+        position: "Position"
+      round:
+        start_page: "Start page"
+        start_page_url: "Satrt page URL"
+        end_page: "End page"
+        end_page_url: "End page URL"
+        game_mode: "Game mode"
+        game_options: "Game options"
+        search_bar: "Search bar"
+        reverse: "Reverse"
+        start_page_random: "Random start page"
+        end_page_random: "Random end page"
+        state: "Game state"
+        start_time: "Start time"
+        back: "Back"
+        charlie: "Where is Charlie?"
+      round_participation:
+        score: "Score"
+        rank: "Rank"
+        item1_used: "Item 1 Used"
+        item2_used: "Item 2 Used"
+        item3_used: "Item 3 Used"
+        item4_used: "Item 4 Used"
+        item5_used: "Item 5 Used"
+        item6_used: "Item 6 Used"
+        end_time: "End time"
+      user:
+        first_name: "First name"
+        last_name: "Last name"
+        username: "Username"
+        coins: "Coins"
+        item1: "Item 1"
+        item2: "Item 2"
+        item3: "Item 3"
+        item4: "Item 4"
+        item5: "Item 5"
+      visited_page:
+        title: "Title"
+        url: "URL"
+      wiki_page:
+        title: "Titre"
+        url: "URL"
+        categories: "Categories"
+
+  english: "English"
+  french: "French"
+  home: "Home"
+  stats: "My statistics"
+  game_rules: "Game rules"
+  edit_user: "Edit user"
+  change_email_pw: "Change email / password"
+  about: "About..."
+  sign_out: "Sign-out"
+  log_in: "Log-in"
+
+  game_sessions:
+    new:
+      create_game: "Create a Game"
+      enter_code: "Enter the given code #"
+      join: "Join"
+      play: "Play"
+      quick_play: "Quick solo game"
+      code_to_join: "Code to join :"
+      join_info: "Once the game creator has chosen the game options, he can share the round number for his friends to join the page 'Camp fire' before starting a new round."
+      note: "Note :"
+      join_info_note: "the round number changes everytimes we restart a round. The new code needs to be shared once again if some new friends want to join the group."
+    show:
+      campfire: "Campfire"
+      invite_friends: "Invite friends"
+      start_game: "START the GAME!"
+      participants:
+        zero:  'No one is connected for now'
+        one:   'You are currently alone'
+        other: '%{count} participants'
+      placeholder: "Write your message..."
+      has_joined:  'has joined the game...'
+      invite: "Invite your firends!"
+      code: "1) Send them this code :  "
+      QRcode: "2) Let them scan this QRcode :"
+      link: "3) Send them this link"
+      copy_link: "Copy the link"
+      game_details: "Game details!"
+      starting_page: "Start page :"
+      random_page: "Random page..."
+      target_page: "Target page :"
+      game_mode: "Game mode :"
+      game_mode_description: "Reach the target page in the minimum of links clicked, doesn't matter the time"
+      game_options: "Game options :"
+      is_on: "On"
+      is_off: "Off"
+      search_bar: "- Search Bar : "
+      reverse: "- Reverse : "
+      back: "- Back : "
+
+  creator:
+    show:
+      story_title: "The little story :"
+      story: "February 2020: TODO."
+      creators_tilte: "Creators :"
+      contact_title: "To contact us :"
+      buy_a_beer_title: "Offer us a drink :"
+      support_us: "Support us :"
+      how: "How to do..."
+
+  game_sessions_quick:
+    new:
+      quick_game: "Quick game alone"
+      play: 'Play'
+      options: "Options"
+      pages: "Pages :"
+      easy_path: 'Generate an "easy" path'
+      random_path: '"Random" path'
+      start_page: "Start page :"
+      target_page: "Targeted page:"
+      random_page: "Random page"
+      no_record: "No record yet on this path"
+      mode: "Modes :"
+      time_limit: "Time limit!"
+      click_limit: "Clicks limit!"
+      options: "Options"
+      search_bar: "Search Bar!"
+      reverse: "Reverse!"
+      back: "Back!"
+      where_is_html: "Where is <i class='fas fa-user-secret'></i>?"
+      pages_info_title: "Page choice :"
+      default_pages: "By default pages are random."
+      pages_info: "It's possible to choose the start page, the targeted page or the both. Also, it's possible to request an 'easy' path (considered like that as already completed in less 5 clicks or less)."
+      modes_info_title: "Choose the mode :"
+      default_mode: "Mode by default."
+      options_info_title: "Choose options :"
+      default: "Active by default."
+      TODO: "(to be developed)"
+      first_arrived: "First arrived!"
+      first_arrived_info: "The game stops when one of the player reach the targeted page. The winner get 100 points, the others loose as many points as the number of clicks they made."
+      note: "Note:"
+      not_available: 'Not available playing alone.'
+      time_limit_info: "Creator choose a time limit. The game ends individually for each player, when the targeted page is found or when the maximum time is reached. The ranking is made first for the ones who reached the targeted page by ascending order of time, and for the ones who failed by ascending order of click."
+      click_limit_info: "Creator choose a click limit. The game ends individually for each player, when the targeted page is found or when the maximum click number is reached. The ranking is made first for the ones who reached the targeted page by ascending order of click, and for the ones who failed by ascending order of time."
+      combine_modes: "It's possible to combine game modes 'Clicks limit!' and 'Time limit!' in order to get limits on these both parameters."
+      combine_options: "It's possible to combine several game options in the same round."
+      search_bar_info: "It's a search bar that highlight in yellow (but don't move the view) words containing the suite of letters searched (in one bloc) in the article."
+      reverse_info_html: "In articles can be hidden logos <i class='fas fa-sync-alt'></i>, they reverse other players screens during 20 s. If yourself are already reversed when you find one <i class='fas fa-sync-alt'></i>, it will reverse other player screens but also put back your screen on the right side."
+      back_info: "It's the possibility to come back to the previous pages. To note that this action is compted as one click."
+      where_is_info_html: "In articles is hidden an uniq <i class='fas fa-user-secret'></i>. As long as you didn't find it, you will not be able to change page. <em>Tips : try to use short articles on your path, it's easier to find it.</em>"
+
+  layouts:
+    application:
+      title: "WikiRace - Learn fast, click faster !"
+
+  round_participations:
+    index:
+      win: "wins !!!"
+      beat_record: "beats the record in"
+      no_record: "No new record on this round..."
+      path: "Path :"
+      time: "Time:"
+      clicks: "Clicks:"
+      new_round: "New Round"
+      already_started: "Sorry, the round already started..."
+      waiting_for: "Waiting for"
+      end_game: "End the game"
+    new:
+      invited_you: "invited you to play!"
+      not_existing: "This round doesn't exist, there is probably an issue with your friend's URL."
+      join: "Join"
+      already_started: "Sorry, you can't join this round as it already started, try to join your firends on the next one..."
+      already_played: "Sorry, you can't join this round as it has already been played..."
+      issue: "Il y a un problème avec cette partie"
+
+  rounds:
+    index:
+      final_score: "Final score"
+      won_by: "The game has been won by"
+      congrat: "BCongrats"
+      mastered: "You mastered the session"
+      summary: "Your summary : "
+      Tpoints: "Total points  :"
+      Tclicks: "Total clicks  :"
+      missing: "missing"
+      rank: "Rank :"
+      score: "Score :"
+      clicks: "Clicks :"
+      home: "Home"
+    new:
+      for_round: "Options for Round"
+      play: 'Play'
+      options: "Options"
+      pages: "Pages :"
+      easy_path: 'Generate an "easy" path'
+      random_path: '"Random" path'
+      start_page: "Start page :"
+      target_page: "Targeted page:"
+      random_page: "Random page"
+      no_record: "No record yet on this path"
+      mode: "Modes :"
+      time_limit: "Time limit!"
+      click_limit: "Clicks limit!"
+      options: "Options"
+      search_bar: "Search Bar!"
+      reverse: "Reverse!"
+      back: "Back!"
+      where_is_html: "Where is <i class='fas fa-user-secret'></i>?"
+      pages_info_title: "Page choice :"
+      default_pages: "By default pages are random."
+      pages_info: "It's possible to choose the start page, the targeted page or the both. Also, it's possible to request an 'easy' path (considered like that as already completed in less 5 clicks or less)."
+      modes_info_title: "Choose the mode :"
+      default_mode: "Mode by default."
+      options_info_title: "Choose options :"
+      default: "Active by default."
+      TODO: "(to be developed)"
+      first_arrived: "First arrived!"
+      first_arrived_info: "The game stops when one of the player reach the targeted page. The winner get 100 points, the others loose as many points as the number of clicks they made."
+      note: "Note:"
+      time_limit_info: "Creator choose a time limit. The game ends individually for each player, when the targeted page is found or when the maximum time is reached. The ranking is made first for the ones who reached the targeted page by ascending order of time, and for the ones who failed by ascending order of click."
+      click_limit_info: "Creator choose a click limit. The game ends individually for each player, when the targeted page is found or when the maximum click number is reached. The ranking is made first for the ones who reached the targeted page by ascending order of click, and for the ones who failed by ascending order of time."
+      combine_modes: "It's possible to combine game modes 'Clicks limit!' and 'Time limit!' in order to get limits on these both parameters."
+      combine_options: "It's possible to combine several game options in the same round."
+      search_bar_info: "It's a search bar that highlight in yellow (but don't move the view) words containing the suite of letters searched (in one bloc) in the article."
+      reverse_info_html: "In articles can be hidden logos <i class='fas fa-sync-alt'></i>, they reverse other players screens during 20 s. If yourself are already reversed when you find one <i class='fas fa-sync-alt'></i>, it will reverse other player screens but also put back your screen on the right side."
+      back_info: "It's the possibility to come back to the previous pages. To note that this action is compted as one click."
+      where_is_info_html: "In articles is hidden an uniq <i class='fas fa-user-secret'></i>. As long as you didn't find it, you will not be able to change page. <em>Tips : try to use short articles on your path, it's easier to find it.</em>"
+    show:
+      starting_in: "The round starts in :"
+      game_mode_is: "The game mode is :"
+      current_path: "Your current path :"
+      round_ended: "The round has ended!"
+      winner_is: "The winner is :"
+      results: 'Results'
+
+  rounds_quick:
+    index:
+      congratulations: "Congratulations, you win!!!"
+      beat_record: "You beat the record in"
+      no_record: "No new record on this round..."
+      victory: "Victory!!!"
+      end_game: "End the game"
+    show:
+      starting_in: "The round starts in :"
+      game_mode_is: "The game mode is :"
+      current_path: "Your current path :"
+      round_ended: "The round has ended!"
+      winner_is: "The winner is :"
+      results: 'Results'
+
+  rules:
+    show:
+      game_rules: "Les règles du jeu"
+      basics: "Les règles de base :"
+      principal: "<p><strong>Le principe:</strong> une course pour rejoindre une page Wikipédia 'cible' à partir d'une autre page 'de départ' en utilisant uniquement les liens présents dans les articles.</p><p>Utilisez vos connaissances et votre culture afin d'associer les idées et de trouver les meilleurs chemins pour atteindre votre objectif.</p>"
+      time_limit: "Time limit!"
+      click_limit: "Clicks limit!"
+      options: "Options"
+      search_bar: "Search Bar!"
+      reverse: "Reverse!"
+      back: "Back!"
+      where_is_html: "Where is <i class='fas fa-user-secret'></i>?"
+      modes_info_title: "Game modes available :"
+      default_mode: "Mode by default."
+      options_info_title: "Game options available:"
+      default: "Active by default."
+      TODO: "(to be developed)"
+      first_arrived: "First arrived!"
+      first_arrived_info: "The game stops when one of the player reach the targeted page. The winner get 100 points, the others loose as many points as the number of clicks they made."
+      note: "Note:"
+      time_limit_info: "Creator choose a time limit. The game ends individually for each player, when the targeted page is found or when the maximum time is reached. The ranking is made first for the ones who reached the targeted page by ascending order of time, and for the ones who failed by ascending order of click."
+      click_limit_info: "Creator choose a click limit. The game ends individually for each player, when the targeted page is found or when the maximum click number is reached. The ranking is made first for the ones who reached the targeted page by ascending order of click, and for the ones who failed by ascending order of time."
+      combine_modes: "It's possible to combine game modes 'Clicks limit!' and 'Time limit!' in order to get limits on these both parameters."
+      combine_options: "It's possible to combine several game options in the same round."
+      search_bar_info: "It's a search bar that highlight in yellow (but don't move the view) words containing the suite of letters searched (in one bloc) in the article."
+      reverse_info_html: "In articles can be hidden logos <i class='fas fa-sync-alt'></i>, they reverse other players screens during 20 s. If yourself are already reversed when you find one <i class='fas fa-sync-alt'></i>, it will reverse other player screens but also put back your screen on the right side."
+      back_info: "It's the possibility to come back to the previous pages. To note that this action is compted as one click."
+      where_is_info_html: "In articles is hidden an uniq <i class='fas fa-user-secret'></i>. As long as you didn't find it, you will not be able to change page. <em>Tips : try to use short articles on your path, it's easier to find it.</em>"
+
+  users:
+    edit:
+      update_profile: "update your profile"
+      fill_profile: "Fill your profile!"
+      data: "Data"
+      surname: "Surname"
+      name: "Name"
+      username: "Username"
+      picture: "Picture"
+      update: 'Update'
+      back: "Back"
+    show:
+      profile: "My profile"
+      coins: "Coins:"
+      monney: "WikiMonney"
+      in_stock: "EIn stock:"
+      world_records: "World records :"
+      personal_records: "Personal records :"
+      seconds: "seconds"

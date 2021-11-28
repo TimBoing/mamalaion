@@ -1,0 +1,312 @@
+fr:
+
+  activerecord:
+    models:
+      game_session: "Session de jeu"
+      message: "Message"
+      path: "Chemin"
+      point: "Point"
+      round: "Round"
+      round_participation: "Participation à un round"
+      user: "Utilisateur"
+      visited_page: "Page visitée"
+      wiki_page: "Page Wikipédia"
+    attributes:
+      game_session:
+      message:
+        content: "Contenu"
+      path:
+        duration: "Durée"
+      point:
+        position: "Position"
+      round:
+        start_page: "Page de départ"
+        start_page_url: "URL de page de départ"
+        end_page: "Page cible"
+        end_page_url: "URL de page cible"
+        game_mode: "Mode de jeu"
+        game_options: "Options de jeu"
+        search_bar: "Barre de recherche"
+        reverse: "Reverse"
+        start_page_random: "Page de départ aléatoire"
+        end_page_random: "Page cible aléatoire"
+        state: "Etat du jeu"
+        start_time: "Temps de départ"
+        back: "Retour en arrière"
+        charlie: "Où est Charlie?"
+      round_participation:
+        score: "Score"
+        rank: "Rang"
+        item1_used: "Object 1 utilisé"
+        item2_used: "Object 2 utilisé"
+        item3_used: "Object 3 utilisé"
+        item4_used: "Object 4 utilisé"
+        item5_used: "Object 5 utilisé"
+        item6_used: "Object 6 utilisé"
+        end_time: "Temps de fin"
+      user:
+        first_name: "Prénom"
+        last_name: "Nom"
+        username: "Nom d'utilisateur"
+        coins: "Pièces"
+        item1: "Object 1"
+        item2: "Object 2"
+        item3: "Object 3"
+        item4: "Object 4"
+        item5: "Object 5"
+      visited_page:
+        title: "Titre"
+        url: "URL"
+      wiki_page:
+        title: "Titre"
+        url: "URL"
+        categories: "Categories"
+
+  english: "Anglais"
+  french: "Francais"
+  home: "Accueil"
+  stats: "Voir mes stats"
+  game_rules: "Les règles du jeu"
+  edit_user: "Editer l'utilisateur"
+  change_email_pw: "Changer mot de passe / Email"
+  about: "A propos..."
+  sign_out: "Déconnection"
+  log_in: "S'identifier"
+
+  game_sessions:
+    new:
+      create_game: "Créer une partie"
+      enter_code: "Entre le code donné #"
+      join: "Rejoindre"
+      play: "JOUER"
+      quick_play: "Jeu rapide solo"
+      code_to_join: "Code pour rejoindre :"
+      join_info: "Une fois que le créateur de la partie a choisi les options de jeu, celui-ci peut partager le numéro du round afin que des amis puissent le rejoindre sur la page 'Feu de camp' avant de démarrer un nouveau round."
+      note: "Note :"
+      join_info_note: "le numéro de round change à chaque fois que l'on veut relancer une manche. Il faut donc partager le nouveau code si l'on veut que d'autres amis rejoignent le groupe."
+    show:
+      campfire: "Feu de Camp"
+      invite_friends: "Inviter des amis"
+      start_game: "LANCE le JEU!"
+      participants:
+        zero:  "Il n'y a pour le moment personne"
+        one:   'Vous êtes pour le moment le seul joueur'
+        other: '%{count} participants'
+      placeholder: "Ecris ton message..."
+      has_joined:  'a rejoint la partie...'
+      invite: "Invite tes amis !"
+      code: "1) Envoie leur ce code :  "
+      QRcode: "2) Fais leur flasher ce QRcode :"
+      link: "3) Envoi leur ce lien"
+      copy_link: "Copier le lien"
+      game_details: "Détails de la partie!"
+      starting_page: "Page de départ :"
+      random_page: "Page aléatoire..."
+      target_page: "Page à atteindre :"
+      game_mode: "Mode de jeu :"
+      game_mode_description: "Atteint la page objectif en cliquant le moins possible, peu importe le temps"
+      game_options: "Options de jeu :"
+      is_on: "Activée"
+      is_off: "Désactivée"
+      search_bar: "- Search Bar : "
+      reverse: "- Reverse : "
+      back: "- Back : "
+
+  creator:
+    show:
+      story_title: "Pour la petite histoire :"
+      story: "Février 2020: Développé comme projet de fin de formation, WikiRace n'avait alors que 2 semaines lorsque ses créateurs décident de le poursuivre dans le but d'affiner leurs connaissances de développeur. Mais voyant rapidement leurs amis se prendre 'litteralement' au jeu, ils ont décidé d'en faire réellement une plateforme de jeu."
+      creators_tilte: "Les créateurs :"
+      contact_title: "Nous contacter :"
+      buy_a_beer_title: "Offre nous un verre :"
+      support_us: "Don de soutien :"
+      how: "La marche à suivre..."
+
+  game_sessions_quick:
+    new:
+      quick_game: "Partie rapide en solo"
+      play: 'Jouer'
+      options: "Options"
+      pages: "Pages :"
+      easy_path: 'Générer un chemin "facile"'
+      random_path: 'Chemin "aléatoire"'
+      start_page: "Page de début :"
+      target_page: "Page cible :"
+      random_page: "Page aléatoire"
+      no_record: "Pas encore de record sur ce chemin"
+      mode: "Modes :"
+      time_limit: "Limite de temps!"
+      click_limit: "Limite de clicks!"
+      options: "Options"
+      search_bar: "Barre de recherche!"
+      reverse: "Reverse!"
+      back: "Précédent!"
+      where_is_html: "Où est <i class='fas fa-user-secret'></i>?"
+      pages_info_title: "Le choix des pages :"
+      default_pages: "Par défaut le choix des pages est aléatoire."
+      pages_info: "Il est possible de choisir sa page de départ, sa page de fin ou les deux à la fois. Il est aussi possible de demander un couple de pages 'facile' (considéré comme tel car ayant déjà été relié 5 clicks ou moins)."
+      modes_info_title: "Le choix des modes :"
+      default_mode: "Mode de jeu par défaut."
+      options_info_title: "Le choix des options :"
+      default: "Actif par défaut."
+      TODO: "(en développement)"
+      first_arrived: "Premier arrivé!"
+      first_arrived_info: "La partie s'arrête lorsque l'un des joueurs arrive sur la page cible. Celui-ci gagne alors 100 points, les autres perdent autant de points que de nombres de clicks réalisés."
+      note: "Note:"
+      not_available: 'Indisponible en jeu "Solo".'
+      time_limit_info: "Le créateur fixe une limite de temps. La partie s'arrête individuellement pour chaque joueur, soit que celui-ci a trouvé la page cible, soit qu'il a atteint le temps maximum autorisé. Le classement se fait pour ceux qui ont trouvé la page cible par ordre croissant de nombre de clicks et pour ceux qui ont échoué, par ordre croissant de clicks."
+      click_limit_info: "Le créateur fixe une limite de clicks. La partie s'arrête individuellement pour chaque joueur, soit que celui-ci a trouvé la page cible, soit qu'il a atteint le nombre maximum de clicks autorisés. Le classement se fait pour ceux qui ont trouvé la page cible par ordre croissant de nombre de clicks et pour ceux qui ont échoué, par ordre croissant de temps."
+      combine_modes: "Il est possible de combiner les modes de jeu 'Limite de clicks!' et 'Limite de temps!' afin d'avoir une limite sur ces deux paramètres."
+      combine_options: "Il est possible de combiner plusieurs options de jeu dans le même round."
+      search_bar_info: "C'est une barre de recherche qui surligne en jaune (mais ne déplace pas la vue) les mots contenant la suite de caractères recherchée (en un seul bloc) dans l'article."
+      reverse_info_html: "Dans les articles peuvent se cacher des logos <i class='fas fa-sync-alt'></i> qui retourne les écrans des autres joueurs pendant 20 s. Si vous êtes vous-même à l'envers lorsque vous activez un <i class='fas fa-sync-alt'></i>, celui-ci retourne les autres mais vous remet aussi à l'endroit."
+      back_info: "C'est la possibilité de revenir sur les pages précédentes. À noter que cette action compte comme un click."
+      where_is_info_html: "Dans les articles se cache un unique <i class='fas fa-user-secret'></i>. Tant que vous ne l'avez pas trouvé, vous ne pouvez pas changer de page. <em>Astuce : privilegez les articles courts pour votre chemin, il sera plus simple à trouver.</em>"
+
+  layouts:
+    application:
+      title: "WikiRace - Apprends vite, click plus vite !"
+
+  round_participations:
+    index:
+      win: "gagne !!!"
+      beat_record: "a battu le record en"
+      no_record: "Pas de nouveau record sur ce round..."
+      path: "Parcours :"
+      time: "Temps:"
+      clicks: "Clicks:"
+      new_round: "Nouveau Round"
+      already_started: "Désolé, la partie a déjà commencé..."
+      waiting_for: "En attente de"
+      end_game: "Finir la partie"
+    new:
+      invited_you: "t'invite à jouer!"
+      not_existing: "Ce round n'existe pas, il doit y avoir un problème avec l'URL de votre ami(e)."
+      join: "Rejoindre"
+      already_started: "Désolé, vous ne pouvez pas vous joindre car ce round a déjà commencé, essayez de vous joindre à vos amis pour un prochain round..."
+      already_played: "Désolé, vous ne pouvez pas vous joindre car ce round a déjà été joué..."
+      issue: "Il y a un problème avec cette partie"
+
+  rounds:
+    index:
+      final_score: "Score final"
+      won_by: "La partie est remportée par"
+      congrat: "Bravo"
+      mastered: "Tu as dominé la session"
+      summary: "Ton recap : "
+      Tpoints: "Total de points  :"
+      Tclicks: "Total de clicks  :"
+      missing: "absent"
+      rank: "Rang :"
+      score: "Score :"
+      clicks: "Clicks :"
+      home: "Accueil"
+    new:
+      for_round: "Options du Round"
+      play: 'Jouer'
+      options: "Options"
+      pages: "Pages :"
+      easy_path: 'Générer un chemin "facile"'
+      random_path: 'Chemin "aléatoire"'
+      start_page: "Page de début :"
+      target_page: "Page cible :"
+      random_page: "Page aléatoire"
+      no_record: "Pas encore de record sur ce chemin"
+      mode: "Modes :"
+      time_limit: "Limite de temps!"
+      click_limit: "Limite de clicks!"
+      options: "Options"
+      search_bar: "Barre de recherche!"
+      reverse: "Reverse!"
+      back: "Précédent!"
+      where_is_html: "Où est <i class='fas fa-user-secret'></i>?"
+      pages_info_title: "Le choix des pages :"
+      default_pages: "Par défaut le choix des pages est aléatoire."
+      pages_info: "Il est possible de choisir sa page de départ, sa page de fin ou les deux à la fois. Il est aussi possible de demander un couple de pages 'facile' (considéré comme tel car ayant déjà été relié 5 clicks ou moins)."
+      modes_info_title: "Le choix des modes :"
+      default_mode: "Mode de jeu par défaut."
+      options_info_title: "Le choix des options :"
+      default: "Actif par défaut."
+      TODO: "(en développement)"
+      first_arrived: "Premier arrivé!"
+      first_arrived_info: "La partie s'arrête lorsque l'un des joueurs arrive sur la page cible. Celui-ci gagne alors 100 points, les autres perdent autant de points que de nombres de clicks réalisés."
+      note: "Note:"
+      time_limit_info: "Le créateur fixe une limite de temps. La partie s'arrête individuellement pour chaque joueur, soit que celui-ci a trouvé la page cible, soit qu'il a atteint le temps maximum autorisé. Le classement se fait pour ceux qui ont trouvé la page cible par ordre croissant de nombre de clicks et pour ceux qui ont échoué, par ordre croissant de clicks."
+      click_limit_info: "Le créateur fixe une limite de clicks. La partie s'arrête individuellement pour chaque joueur, soit que celui-ci a trouvé la page cible, soit qu'il a atteint le nombre maximum de clicks autorisés. Le classement se fait pour ceux qui ont trouvé la page cible par ordre croissant de nombre de clicks et pour ceux qui ont échoué, par ordre croissant de temps."
+      combine_modes: "Il est possible de combiner les modes de jeu 'Limite de clicks!' et 'Limite de temps!' afin d'avoir une limite sur ces deux paramètres."
+      combine_options: "Il est possible de combiner plusieurs options de jeu dans le même round."
+      search_bar_info: "C'est une barre de recherche qui surligne en jaune (mais ne déplace pas la vue) les mots contenant la suite de caractères recherchée (en un seul bloc) dans l'article."
+      reverse_info_html: "Dans les articles peuvent se cacher des logos <i class='fas fa-sync-alt'></i> qui retourne les écrans des autres joueurs pendant 20 s. Si vous êtes vous-même à l'envers lorsque vous activez un <i class='fas fa-sync-alt'></i>, celui-ci retourne les autres mais vous remet aussi à l'endroit."
+      back_info: "C'est la possibilité de revenir sur les pages précédentes. À noter que cette action compte comme un click."
+      where_is_info_html: "Dans les articles se cache un unique <i class='fas fa-user-secret'></i>. Tant que vous ne l'avez pas trouvé, vous ne pouvez pas changer de page. <em>Astuce : privilegez les articles courts pour votre chemin, il sera plus simple à trouver.</em>"
+    show:
+      starting_in: "Le round commence dans :"
+      game_mode_is: "Le mode de jeu est :"
+      current_path: "Ta route actuelle :"
+      round_ended: "Le round est terminé!"
+      winner_is: "Le vainqueur est :"
+      results: 'Résultats'
+
+  rounds_quick:
+    index:
+      congratulations: "Félicitation, vous avez gagné!!!"
+      beat_record: "Vous avez battu le record en"
+      no_record: "Pas de nouveau record sur ce round..."
+      victory: "Victoire!!!"
+      end_game: "Finir la partie"
+    show:
+      starting_in: "Le round commence dans :"
+      game_mode_is: "Le mode de jeu est :"
+      current_path: "Ta route actuelle :"
+      round_ended: "Le round est terminé!"
+      winner_is: "Le vainqueur est :"
+      results: 'Résultats'
+
+  rules:
+    show:
+      game_rules: "Les règles du jeu"
+      basics: "Les règles de base :"
+      principal: "<p><strong>Le principe:</strong> une course pour rejoindre une page Wikipédia 'cible' à partir d'une autre page 'de départ' en utilisant uniquement les liens présents dans les articles.</p><p>Utilisez vos connaissances et votre culture afin d'associer les idées et de trouver les meilleurs chemins pour atteindre votre objectif.</p>"
+      time_limit: "Limite de temps!"
+      click_limit: "Limite de clicks!"
+      options: "Options"
+      search_bar: "Barre de recherche!"
+      reverse: "Reverse!"
+      back: "Précédent!"
+      where_is_html: "Où est <i class='fas fa-user-secret'></i>?"
+      modes_info_title: "Les modes de jeu disponibles:"
+      default_mode: "Mode de jeu par défaut."
+      options_info_title: "Les options de jeu disponibles:"
+      default: "Actif par défaut."
+      TODO: "(en développement)"
+      first_arrived: "Premier arrivé!"
+      first_arrived_info: "La partie s'arrête lorsque l'un des joueurs arrive sur la page cible. Celui-ci gagne alors 100 points, les autres perdent autant de points que de nombres de clicks réalisés."
+      note: "Note:"
+      time_limit_info: "Le créateur fixe une limite de temps. La partie s'arrête individuellement pour chaque joueur, soit que celui-ci a trouvé la page cible, soit qu'il a atteint le temps maximum autorisé. Le classement se fait pour ceux qui ont trouvé la page cible par ordre croissant de nombre de clicks et pour ceux qui ont échoué, par ordre croissant de clicks."
+      click_limit_info: "Le créateur fixe une limite de clicks. La partie s'arrête individuellement pour chaque joueur, soit que celui-ci a trouvé la page cible, soit qu'il a atteint le nombre maximum de clicks autorisés. Le classement se fait pour ceux qui ont trouvé la page cible par ordre croissant de nombre de clicks et pour ceux qui ont échoué, par ordre croissant de temps."
+      combine_modes: "Il est possible de combiner les modes de jeu 'Limite de clicks!' et 'Limite de temps!' afin d'avoir une limite sur ces deux paramètres."
+      combine_options: "Il est possible de combiner plusieurs options de jeu dans le même round."
+      search_bar_info: "C'est une barre de recherche qui surligne en jaune (mais ne déplace pas la vue) les mots contenant la suite de caractères recherchée (en un seul bloc) dans l'article."
+      reverse_info_html: "Dans les articles peuvent se cacher des logos <i class='fas fa-sync-alt'></i> qui retourne les écrans des autres joueurs pendant 20 s. Si vous êtes vous-même à l'envers lorsque vous activez un <i class='fas fa-sync-alt'></i>, celui-ci retourne les autres mais vous remet aussi à l'endroit."
+      back_info: "C'est la possibilité de revenir sur les pages précédentes. À noter que cette action compte comme un click."
+      where_is_info_html: "Dans les articles se cache un unique <i class='fas fa-user-secret'></i>. Tant que vous ne l'avez pas trouvé, vous ne pouvez pas changer de page. <em>Astuce : privilegez les articles courts pour votre chemin, il sera plus simple à trouver.</em>"
+
+  users:
+    edit:
+      update_profile: "mets à jour ton profil"
+      fill_profile: "Renseigne ton profil!"
+      data: "Info"
+      surname: "Nom"
+      name: "Prénom"
+      username: "Nom d'utilisateur"
+      picture: "Photo"
+      update: 'Mettre à jour'
+      back: "Retour"
+    show:
+      profile: "Mon profil"
+      coins: "Pièces:"
+      monney: "WikiMonnaie"
+      in_stock: "En stock:"
+      world_records: "Records mondiaux :"
+      personal_records: "Records perso :"
+      seconds: "secondes"

@@ -5,6 +5,8 @@ class MessagesController < ApplicationController
     @game_session = GameSession.find(params[:game_session_id])
     @message.game_session = @game_session
     @message.user = current_user
+
+    # Géré par le model after_create mtnt
     # if @message.save
     #   # here is the broadcast that happens when a message is saved
     #   ActionCable.server.broadcast("game_session_channel_#{@game_session.id}", {

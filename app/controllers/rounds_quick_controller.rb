@@ -78,7 +78,7 @@ class RoundsQuickController < ApplicationController
     round = Round.find(params[:id])
     round.update(state: 'ended')
     winner = User.find(params[:winner]).username
-    # ActionCable.server.broadcast("game_session_channel_#{round.game_session.id}", end_game: winner)
+    ActionCable.server.broadcast("game_session_channel_#{round.game_session.id}", end_game: winner)
     RoundScoreComputer.new(round).call
   end
 
