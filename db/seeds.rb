@@ -6,14 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Creating new users..."
+puts "Destroying the old database"
+Point.destroy_all
+Path.destroy_all
+WikiPage.destroy_all
+VisitedPage.destroy_all
+RoundParticipation.destroy_all
+Round.destroy_all
+GameSession.destroy_all
+User.destroy_all
+puts "All the old database has been deleted"
+
+
+puts "Creating seeds for solo games"
 user_solo_fr = User.create!(email: "mode@solo.fr", password: "123456", first_name: "Mode", last_name: "Solo",coins: 0, username: "ModeSoloFR")
 user_solo_en = User.create!(email: "mode@solo.en", password: "123456", first_name: "Mode", last_name: "Solo",coins: 0, username: "ModeSoloEN")
+game_session_solo_fr = GameSession.create(user: user_solo_fr, language: :fr)
+game_session_solo_en = GameSession.create(user: user_solo_en, language: :en)
+puts "Solo games in place"
 
-
+puts "Creating new users..."
 user_1 = User.create!(email: "1player1@test.com", password: "123456", first_name: "Mama", last_name: "Laion",coins: 0, username: "MamaLaion")
-# user_solo_fr.save!
-
 puts "Some users have been created"
 
 puts "Creating new wiki_pages..."

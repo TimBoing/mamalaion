@@ -1,0 +1,59 @@
+// #force-cohesion {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   max-height: 315px;
+// }
+
+#nombre-de-clicks-record{
+  margin-bottom:10px;
+}
+
+#new_round {
+  min-width:80%;
+}
+
+#round-options {
+  //color: $matrix-green;
+  font: $game-clean-font;
+  color: black;
+  margin-bottom: 20px;
+
+  h4 {
+    font-family: $game-clean-font;
+    color: white;
+  }
+}
+
+#page-choice-container{
+  // width: 80%;
+}
+
+
+#to-fire-camp {
+  background-color: #CB1C67;
+}
+
+
+#round-options-btn{
+  background-color: #1bcb7f;
+}
+
+#round-options-ok-btn{
+  background-color: #CB1C67;
+}
+
+#round_game_mode {
+  width: 100%;
+}
+
+#round_game_options{
+  display:none;
+}
+
+.not-visible{
+  display:none;
+}
+

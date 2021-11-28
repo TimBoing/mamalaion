@@ -1,3 +1,6 @@
+require 'json'
+require 'open-uri'
+
 class RoundsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:update]
 

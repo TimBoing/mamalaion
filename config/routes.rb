@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # mount ActionCable.server => "/cable"
+  mount ActionCable.server => "/cable"
 
   scope '(:locale)', locale: /fr|en/ do
 
     root to: 'game_sessions#new'
-
-    # resources :game_sessions_quick, only: [:new], shallow: true do
-      # resources :rounds_quick, only: [:show, :update, :index]
-    # end
+    resources :game_sessions_quick, only: [:new], shallow: true do
+      resources :rounds_quick, only: [:show, :update, :index]
+    end
 
     resource :rules, only: [:show]
     resources :users, only: [:edit, :update, :show]
@@ -24,7 +23,8 @@ Rails.application.routes.draw do
       end
     end
 
-    get 'creator/show'
+    get 'creators', to: 'pages#creators'
+    get 'about', to: 'pages#about'
 
   end
 end

@@ -1,0 +1,52 @@
+#score-page-record-container {
+  padding: 20px;
+}
+
+#score-page-buttons-container{
+  padding: 20px;
+  // min-width: 80%;
+}
+
+#launch-new-round{
+  background-color: $main-red;
+}
+
+#go-to-round-index{
+  background-color: #1bcb7f;
+}
+
+.parcours-title{
+  margin: 20px;
+  color: $main-red;
+}
+
+.time-and-score{
+  margin: 20px;
+  border-bottom: 1px solid $main-red;
+
+
+}
+
+.chevrons {
+  margin-bottom: 20px;
+  color: $main-red;
+  font-size: 30px;
+}
+
+.game-font {
+   p{
+    font-family: $game-clean-font;
+  }
+
+}
+
+#new_round_link{
+  background-color: $main-red;
+}
+
+.trophy {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: $main-yellow;
+  text-shadow: 1px 1px 2px black;
+}

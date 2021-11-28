@@ -3,4 +3,11 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def creators
+  end
+
+  def about
+  end
+
 end

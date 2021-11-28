@@ -1,0 +1,76 @@
+#btn-start-game{
+  background-color: #CB1C67;
+}
+
+#invite-friends-btn{
+  background-color: #1bcb7f;
+}
+
+#round-info-btn{
+  background-color: #CB1C67;
+}
+
+#create-message{
+  margin-top: 20px;
+}
+
+
+#invite-friends-modal-content{
+
+}
+
+.connected-players {
+  display: flex;
+
+  p {
+    margin-right: 10px;
+  }
+}
+
+#round-info-modal-content {
+    h3 {
+    color: $main-red;
+    margin: 20px;
+  }
+    h5 {
+    color: $main-green;
+    margin: 20px;
+  }
+}
+
+
+.info-option-container{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //border-bottom: 1px solid $main-red;
+}
+
+#round-info-modal-content-after-header{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#ok-btn{
+  background-color: #CB1C67;
+}
+
+.invit-arrow {
+  font-size: 32px;
+  color: $main-red;
+}
+
+#round-id-link {
+  font-size: 24px;
+  color: $main-red;
+}
+
+#nbr-player-connected {
+  margin-bottom: 0;
+  color: $main-red;
+  font-size: 24px;
+}

@@ -40,7 +40,7 @@
           <div id="search-icon-container">
             <i class="fas fa-search" id="search-icon"></i>
           </div>
-          <input id="seach-field" type="text" value=""></>
+          <input id="search-field" type="text" value="">
         </div>
       <% end %>
 
@@ -106,6 +106,7 @@
 </audio>
 
 <div id="game-info"
+  data-game-session-id="<%= @game_session.id %>"
   data-current-user="<%= current_user.id %>"
   data-round="<%= @round.id %>"
   data-state= "init"
@@ -123,8 +124,8 @@
   data-language = "<%= locale %>">>
 </div>
 
-<% content_for :after_js do %>
-  <script>
+<%# content_for :after_js do %>
+  <!-- <script>
     App['game_session_channel_<%= @game_session.id %>'] = App.cable.subscriptions.create(
     { channel: 'GameSessionChannel', game_session_id: <%= @game_session.id %> },
     {received: (data) => {
@@ -175,8 +176,8 @@
     }
 
     })
-  </script>
-<% end %>
+  </script> -->
+<%# end %>
 
 
 

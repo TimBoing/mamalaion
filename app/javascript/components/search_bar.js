@@ -1,7 +1,7 @@
 const searchBar = () => {
   const searchBar = document.getElementById("game-actions-search");
   const searchIconContainer = document.getElementById("search-icon-container");
-  const searchField = document.getElementById('seach-field');
+  const searchField = document.getElementById('search-field');
 
 
   if(searchBar){

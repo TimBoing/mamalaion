@@ -1,8 +1,12 @@
+require 'json'
+require 'open-uri'
+
 class RoundsQuickController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
 
   def new
+
     @round = Round.new
     @game_session = GameSession.find(params[:game_session_id])
     @wiki_pages = WikiPage.all.sort_by { |wiki_page| wiki_page.title }
@@ -75,10 +79,20 @@ class RoundsQuickController < ApplicationController
   end
 
   def update
+
+    puts "----------------------------------------------------------------------------"
+    puts "I AM IN UPDATE ROUND QUICK"
+    puts "----------------------------------------------------------------------------"
     round = Round.find(params[:id])
     round.update(state: 'ended')
     winner = User.find(params[:winner]).username
-    ActionCable.server.broadcast("game_session_channel_#{round.game_session.id}", end_game: winner)
+    # ActionCable.server.broadcast("game_session_channel_#{round.game_session.id}", end_game: winner)
+
+    GameSessionChannel.broadcast_to(
+      round.game_session,
+      end_game: winner
+    )
+
     RoundScoreComputer.new(round).call
   end
 

@@ -20,6 +20,7 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
+import { initGameSessionCable } from '../channels/game_session_channel';
 
 import { loadDynamicBannerText } from '../components/banner_typed';
 import { handleRoundOptionsModal } from '../components/handle_modals';
@@ -46,12 +47,14 @@ import { collapsibleChevrons } from '../components/chevrons';
 import { gamePath } from '../components/game_path';
 import { copyURL } from '../components/copy_url';
 
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initGameSessionCable();
 
   loadDynamicBannerText();
   handleRoundOptionsModal();

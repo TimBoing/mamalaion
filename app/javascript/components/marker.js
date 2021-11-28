@@ -2,7 +2,7 @@ import Mark  from "mark.js/dist/mark.js" ;
 
 const highlight = () => {
   const gameContainer = document.getElementById('game-container');
-  const searchField = document.getElementById('seach-field');
+  const searchField = document.getElementById('search-field');
 
   if(gameContainer){
     searchField.addEventListener('keyup', (event) => {

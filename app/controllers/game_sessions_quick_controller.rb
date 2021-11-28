@@ -2,6 +2,7 @@ class GameSessionsQuickController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new]
 
   def new
+
     if locale == :en
       @unknown_user = User.find_by(username: "ModeSoloEN")
     else
@@ -14,5 +15,7 @@ class GameSessionsQuickController < ApplicationController
     @round_participation = RoundParticipation.new
     wiki_pages_all = WikiPage.all.sort_by { |wiki_page| wiki_page.title }
     @wiki_pages = wiki_pages_all.select { |wikipage| wikipage.language == "#{locale}" }
+
+
   end
 end

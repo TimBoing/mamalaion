@@ -1,6 +1,7 @@
 .main-container{
   position: relative;
-  background: asset-url('maze.jpg');
+  background-image: url(image_path("maze.jpg"));
+  // background: asset-url('maze.jpg');
   width:100%;
   min-height: calc(100vh - 56px);
   display: flex;
