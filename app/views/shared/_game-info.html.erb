@@ -1,0 +1,24 @@
+<div id="game-info"
+  data-game-session-id="<%= @game_session.id %>"
+  data-current-user="<%= current_user.id %>"
+  data-round="<%= @round.id %>"
+  data-round-path="<%= round_path(@round) %>"
+  data-has-joined-trad="<%= t('.has_joined') %>"
+
+  <% if @round.state == 'playing' %>
+    data-state= "init"
+    data-winner= ""
+    data-start-page="<%= @round.start_page %>"
+    data-end-page="<%= @round.end_page %>"
+    data-current-page="<%= @round.start_page %>"
+    data-participation = "<%= @round_participation_id  %>"
+    data-game-mode = "<%= @round.game_mode %>"
+    data-start-time = "<%= @round.start_time %>"
+    data-malus-sender = ""
+    data-malus = "none"
+    data-reverse = "<%= @round.reverse %>"
+    data-charlie = "<%= @round.charlie %>"
+    data-language = "<%= locale %>"
+  <% end %>
+  >
+</div>

@@ -15,8 +15,18 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @game_session = @round.game_session
     @round_participation_id = @round.round_participations.where(user: current_user).first.id
-    ActionCable.server.broadcast("game_session_channel_#{@game_session.id}", content: @round.id, new_round_link_off: '<button class="player_replay_button btn-tim main-red" style="opacity: 0.5;"><i>Désolé, la partie a déjà commencé...</i></button>') if @round.state != "playing"
+    # ActionCable.server.broadcast("game_session_channel_#{@game_session.id}", content: @round.id, new_round_link_off: '<button class="player_replay_button btn-tim main-red" style="opacity: 0.5;"><i>Désolé, la partie a déjà commencé...</i></button>') if @round.state != "playing"
+
+    unless @round.state == "playing"
+      GameSessionChannel.broadcast_to(
+        @game_session,
+        content: @round.id,
+        new_round_link_off: '<button class="player_replay_button btn-tim main-red" style="opacity: 0.5;"><i>Désolé, la partie a déjà commencé...</i></button>'
+      )
+    end
+
     @round.update(state: "playing")
+
   end
 
   def new
@@ -81,12 +91,22 @@ class RoundsController < ApplicationController
     unless params[:state].nil?
       round.update(state: 'ended')
       winner = User.find(params[:winner]).username
-      ActionCable.server.broadcast("game_session_channel_#{round.game_session.id}", end_game: winner)
+
+      # ActionCable.server.broadcast("game_session_channel_#{round.game_session.id}", end_game: winner)
+      GameSessionChannel.broadcast_to(
+        round.game_session,
+        end_game: winner
+      )
+
       RoundScoreComputer.new(round).call
     end
 
     unless params[:malus].nil?
-      ActionCable.server.broadcast("game_session_channel_#{round.game_session.id}", malus: params[:malus])
+      # ActionCable.server.broadcast("game_session_channel_#{round.game_session.id}", malus: params[:malus])
+      GameSessionChannel.broadcast_to(
+        round.game_session,
+        malus: params[:malus]
+      )
     end
   end
 

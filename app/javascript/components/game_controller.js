@@ -41,20 +41,22 @@ let currentPage = gameStartPage;
 
 const initGame = () => {
   if(gameInfo){
-    gameRound = gameInfo.dataset.round;
-    gameState = gameInfo.dataset.state;
-    gameStartPage = gameInfo.dataset.startPage;
-    gameEndPage = gameInfo.dataset.endPage;
-    gameParticipation = gameInfo.dataset.participation;
-    gameMode = gameInfo.dataset.gameMode;
-    currentUserId = gameInfo.dataset.currentUser;
-    gameStartTime = parseInt(gameInfo.dataset.startTime);
-    gameLaunchTime = gameStartTime + waitingTime * 1000;
-    const realTitle = gameEndPage.replace(/_/g, " ");
-    infoGameEndPageTitleContainer.innerText = `La page cible est : ${realTitle}`;
-    requestEndPageContent(gameEndPage);
-    infoContainer.style.display = "block";
-    myInterval = setInterval(gameLoop, 250);
+    if(gameInfo.dataset.state){
+      gameRound = gameInfo.dataset.round;
+      gameState = gameInfo.dataset.state;
+      gameStartPage = gameInfo.dataset.startPage;
+      gameEndPage = gameInfo.dataset.endPage;
+      gameParticipation = gameInfo.dataset.participation;
+      gameMode = gameInfo.dataset.gameMode;
+      currentUserId = gameInfo.dataset.currentUser;
+      gameStartTime = parseInt(gameInfo.dataset.startTime);
+      gameLaunchTime = gameStartTime + waitingTime * 1000;
+      const realTitle = gameEndPage.replace(/_/g, " ");
+      infoGameEndPageTitleContainer.innerText = `La page cible est : ${realTitle}`;
+      requestEndPageContent(gameEndPage);
+      infoContainer.style.display = "block";
+      myInterval = setInterval(gameLoop, 250);
+    }
   }
 };
 

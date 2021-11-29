@@ -1,3 +1,5 @@
+<%= render "shared/game-info" %>
+
 <div class="main-container" id="gs-show-main-container">
   <div class="title-container centered-vertically"><h1><%= t('.campfire') %></h1></div>
   <div class="content-container centered-vertically">
@@ -23,7 +25,7 @@
 
       <div class="messages">
         <% @game_session.messages.each do |message| %>
-          <%= render "messages", message: message %>
+          <%= render "game_sessions/message", message: message %>
         <% end %>
         <% @round.round_participations.each do |round_participation| %>
         <p class="new-connection">- <%= User.find(round_participation.user_id).username %> <%= t('.has_joined') %></p>
@@ -96,72 +98,17 @@
 </div>
 
 <audio id="message-received" preload="true">
- <source src='/new_message.mp3' type="audio/mpeg">
+ <source src='<%= asset_path('new_message.mp3') %>' type="audio/mpeg">
 </audio>
 
 <audio id="player-joined" preload="true">
- <source src='/player_joining.mp3' type="audio/mpeg">
+ <source src='<%= asset_path('player_joining.mp3') %>' type="audio/mpeg">
 </audio>
 
 <audio id="link-copied" preload="true">
- <source src='/link_click.mp3' type="audio/mpeg">
+ <source src='<%= asset_path('link_click.mp3') %>' type="audio/mpeg">
 </audio>
 
-<% content_for :after_js do %>
-  <script>
-    const messageReceived = document.getElementById('message-received');
-    messageReceived.play;
-
-    App['game_session_channel_<%= @game_session.id %>'] = App.cable.subscriptions.create(
-    { channel: 'GameSessionChannel', game_session_id: <%= @game_session.id %> },
-    {received: (data) => {
-        if (data.message_partial === undefined && data.player === undefined && data.end_game === undefined) {
-          window.location = '<%= round_path(@round) %>';
-
-        } else if (data.content === undefined && data.player === undefined && data.end_game === undefined) {
-          const messagesContainer = document.querySelector('.messages');
-          messagesContainer.insertAdjacentHTML('afterbegin', data.message_partial);
-          if (data.current_user_id == <%= current_user.id %>) {
-            const  input = document.querySelector('#message_content');
-            input.value = '';
-          }
-          const messageReceived = document.getElementById('message-received');
-          const messageReceivedPromise = messageReceived.play();
-          messageReceived.currentTime = 0;
-          if (messageReceivedPromise !== undefined) {
-            messageReceivedPromise.then(function() {
-              messageReceived.play();
-            }).catch(function(error) {
-              messageReceived.play();
-              console.log("Probleme de chargement du son pour message recu!");
-            });
-          }
-        } else if (data.content === undefined && data.message_partial === undefined && data.end_game === undefined) {
-          const playerConnected = document.querySelector('.messages');
-          playerConnected.insertAdjacentHTML('afterbegin', `<p class="new-connection">- ${data.player} <%= t('.has_joined') %></p>`);
-          const numberOfPlayers = document.getElementById('nbr-player-connected');
-          numberOfPlayers.innerText = data.connected
-          const playerJoinSong = document.getElementById('player-joined');
-          const playerJoinSongPromise = playerJoinSong.play();
-          playerJoinSong.currentTime = 0;
-          if (playerJoinSongPromise !== undefined) {
-            playerJoinSongPromise.then(function() {
-              playerJoinSong.play();
-            }).catch(function(error) {
-              playerJoinSong.play();
-              console.log("Probleme de chargement du son pour player joined!");
-            });
-          }
-        } else if (data.content === undefined && data.message_partial === undefined && data.player === undefined) {
-          console.log('modal pop up');
-
-        } else {
-          console.log('canard');
-        }
-      }
-    })
-  </script>
-<% end %>
 
 
 

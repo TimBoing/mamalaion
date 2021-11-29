@@ -1,61 +1,58 @@
-<!-- Tracking the mouse with coordinates---------- -->
-  <!-- <div id="top-mouse">Top mouse : 0</div>
-  <div id="left-mouse">Left mouse : 0</div> -->
-<!-- --------------------------------------------- -->
+<%= render "shared/game-info" %>
 
-  <div class="container-fluid d-flex align-items-center justify-content-center">
-    <div id="game-container" class="" >
+<div class="container-fluid d-flex align-items-center justify-content-center">
+  <div id="game-container" class="" >
 
-      <h1 id="wikipage-title-container"></h1>
-      <div id="wikipage-container">
-        <!-- <div id="portal-test" class="small-portal"></div> -->
-      </div>
-
-      <div id="quit-icon-container">
-        <%= link_to "#{@host_name}#{root_path}", class: "quit-btn" do %>
-          <i class="far fa-times-circle" id="quit-icon"></i>
-        <% end %>
-      </div>
-
-
-      <div id="path-icon-container">
-          <i class="fas fa-route" id="path-icon"></i>
-      </div>
-
-
-      <!-- <div id="game-actions-bar-top">
-
-          <i class="fas fa-search" id="game-actions-search"></i>
-
-          <div id="userFindInput" class="hidden">
-              <input id="userFindInputText" type="text" value="" style="border: none;"/>
-          </div>
-
-          <i class="fas fa-poo-storm" id="game-actions-weapons"></i>
-
-      </div> -->
-
-      <% if @round.search_bar %>
-        <div id="game-actions-search">
-          <div id="search-icon-container">
-            <i class="fas fa-search" id="search-icon"></i>
-          </div>
-          <input id="search-field" type="text" value="">
-        </div>
-      <% end %>
-
-
-      <div id="game-actions-bar">
-        <% if @round.back %>
-          <i class="fas fa-chevron-circle-left" id="action-previous-page"></i>
-        <% else %>
-          <div> </div>
-        <% end %>
-        <div id="timer-container">00:00:00</div>
-
-        <i class="fas fa-bullseye" id="action-target-page"></i>
-      </div>
+    <h1 id="wikipage-title-container"></h1>
+    <div id="wikipage-container">
+      <!-- <div id="portal-test" class="small-portal"></div> -->
     </div>
+
+    <div id="quit-icon-container">
+      <%= link_to "#{@host_name}#{root_path}", class: "quit-btn" do %>
+        <i class="far fa-times-circle" id="quit-icon"></i>
+      <% end %>
+    </div>
+
+
+    <div id="path-icon-container">
+        <i class="fas fa-route" id="path-icon"></i>
+    </div>
+
+
+    <!-- <div id="game-actions-bar-top">
+
+        <i class="fas fa-search" id="game-actions-search"></i>
+
+        <div id="userFindInput" class="hidden">
+            <input id="userFindInputText" type="text" value="" style="border: none;"/>
+        </div>
+
+        <i class="fas fa-poo-storm" id="game-actions-weapons"></i>
+
+    </div> -->
+
+    <% if @round.search_bar %>
+      <div id="game-actions-search">
+        <div id="search-icon-container">
+          <i class="fas fa-search" id="search-icon"></i>
+        </div>
+        <input id="search-field" type="text" value="">
+      </div>
+    <% end %>
+
+
+    <div id="game-actions-bar">
+      <% if @round.back %>
+        <i class="fas fa-chevron-circle-left" id="action-previous-page"></i>
+      <% else %>
+        <div> </div>
+      <% end %>
+      <div id="timer-container">00:00:00</div>
+
+      <i class="fas fa-bullseye" id="action-target-page"></i>
+    </div>
+  </div>
 </div>
 
 <div id="info-your-target-modal" class="modal">
@@ -105,24 +102,7 @@
  <source src='<%= asset_path('loosing.mp3') %>' type="audio/mpeg">
 </audio>
 
-<div id="game-info"
-  data-game-session-id="<%= @game_session.id %>"
-  data-current-user="<%= current_user.id %>"
-  data-round="<%= @round.id %>"
-  data-state= "init"
-  data-winner= ""
-  data-start-page="<%= @round.start_page %>"
-  data-end-page="<%= @round.end_page %>"
-  data-current-page="<%= @round.start_page %>"
-  data-participation = "<%= @round_participation_id  %>"
-  data-game-mode = "<%= @round.game_mode %>"
-  data-start-time = "<%= @round.start_time %>"
-  data-malus-sender = ""
-  data-malus = "none"
-  data-reverse = "<%= @round.reverse %>"
-  data-charlie = "<%= @round.charlie %>"
-  data-language = "<%= locale %>">>
-</div>
+
 
 <%# content_for :after_js do %>
   <!-- <script>
