@@ -1,7 +1,7 @@
 <div class="main-container">
   <div class="title-container centered-vertically"><h1><%= t('.quick_game') %></h1></div>
   <div class="content-container centered-vertically">
-    <div class="white-container centered-vertically">
+    <div class="white-container centered-vertically max-800">
     <%= simple_form_for @round, url: rounds_quick_path(@round), method: "GET", html:{class:"centered-vertically"} do |f| %>
       <%= f.button :submit,t('.play'), class: "btn-tim", id:"to-fire-camp" %>
       <%= button_tag t('.options'),type: 'button', class: "btn-tim", id:"round-options-btn" %>

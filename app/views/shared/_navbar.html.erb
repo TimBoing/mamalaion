@@ -26,7 +26,7 @@
             <%= link_to t('game_rules'), rules_path, class: "dropdown-item" %>
             <%= link_to t('edit_user'), edit_user_path(current_user[:id]), class: "dropdown-item" %>
             <%= link_to t('change_email_pw'), edit_user_registration_path, class: "dropdown-item" %>
-            <%= link_to t('about'), creator_show_path, class: "dropdown-item" %>
+            <%= link_to t('about'), creators_path, class: "dropdown-item" %>
             <%= link_to t('sign_out'), destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>

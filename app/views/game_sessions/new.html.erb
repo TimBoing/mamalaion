@@ -1,7 +1,7 @@
 <div class="main-container">
   <div class="title-container centered-vertically "><h1><span id="#home-page-title">WikiRace</span></h1></div>
   <div class="content-container centered-vertically">
-    <div class="white-container centered-vertically">
+    <div class="white-container centered-vertically max-800">
       <% if user_signed_in? %>
 
           <%= simple_form_for @game_session, html: { id: 'home-page-options' } do |f| %>

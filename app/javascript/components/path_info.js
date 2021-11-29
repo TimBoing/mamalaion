@@ -12,9 +12,12 @@ const displayPathInfo = () => {
         assignedModal.style.display = "block";
       });
 
-      assignedSpan.addEventListener('click', (event) => {
-        assignedModal.style.display = "none";
-      });
+      if(assignedSpan){
+        assignedSpan.addEventListener('click', (event) => {
+          assignedModal.style.display = "none";
+        });
+      }
+
 
       window.addEventListener('click', (event) => {
         if (event.target == assignedModal) {
