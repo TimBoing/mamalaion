@@ -102,9 +102,10 @@ const notifyRoundEnded = () => {
       },
       body: JSON.stringify({state: 'ended', winner: gameInfo.dataset.winner})
     };
-    fetch(`https://${window.location.host}/rounds_quick/${gameRound}`, requestOptions)
-    // fetch(`http://localhost:3000/rounds_quick/${gameRound}`, requestOptions)
-      .catch(error => console.log('error', error));
+    fetch(`https://${window.location.host}/rounds_quick/${gameRound}`, requestOptions).catch(error => {
+      console.log('error', error);
+      fetch(`http://${window.location.host}/rounds_quick/${gameRound}`, requestOptions).catch(e => console.log(e));
+    });
   }
 
 }
