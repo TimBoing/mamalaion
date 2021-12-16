@@ -7,6 +7,8 @@ class VisitedPagesController < ApplicationController
     @visited_page = VisitedPage.new(visited_page_params)
     @visited_page.round_participation = @round_participation
     @visited_page.save
+    response_hash = { response: "Created Visited Page"}
+    render json: response_hash.to_json
   end
 
   def index

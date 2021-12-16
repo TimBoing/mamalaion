@@ -1,3 +1,5 @@
+import { getRecord } from '../ajax/getRecord';
+
 const pageChoiceContainer = document.getElementById('page-choice-container');
 const recordSentence = document.getElementById("nombre-de-clicks-record");
 let startPage = "Page aléatoire";
@@ -6,24 +8,16 @@ let endPage = "Page aléatoire";
 const checkRecord = () => {
 
 
-  const lookInDB = (start_end) => {
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
+  const updateHTML = (data) => {
+    if (data.min_click === "") {
+      recordSentence.innerHTML = "Pas encore de record sur ce chemin";
+    } else {
+      recordSentence.innerHTML = `Le record pour ce couple de pages est de : <strong>${data.min_click} clicks</strong>`;
     }
-    fetch(`http://${window.location.host}/path?${start_end}`, requestOptions)
-      .then(response => response.json())
-      .then((data) => {
+  }
 
-        if (data.min_click === "") {
-          recordSentence.innerHTML = "Pas encore de record sur ce chemin";
-        } else {
-          recordSentence.innerHTML = `Le record pour ce couple de pages est de : <strong>${data.min_click} clicks</strong>`;
-        }
-    });
+  const lookInDB = (start_end) => {
+    getRecord(start_end, updateHTML);
   };
 
   const buildQueryString = (start, end) => {

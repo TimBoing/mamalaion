@@ -5,6 +5,9 @@ const applyMalus = () => {
   alert("Reverse!");
   const currentUserId = gameInfo.dataset.currentUser;
   const gameRound = gameInfo.dataset.round;
+
+  //Update le round  ==> gameOptions, gameRound, winner
+
   const requestOptions = {
     method: 'PATCH',
     headers: {
@@ -13,7 +16,7 @@ const applyMalus = () => {
     },
     body: JSON.stringify({malus:{sender:`${currentUserId}`, type:'reverse'}})
   };
-  fetch(`http://${window.location.host}/rounds/${gameRound}`, requestOptions)
+  fetch(`${window.location.protocol}//${window.location.host}/rounds/${gameRound}`, requestOptions)
     .catch(error => console.log('error', error));
 }
 
@@ -28,7 +31,7 @@ const removeMalus = () => {
     },
     body: JSON.stringify({malus:{sender:`${currentUserId}`, type:'reverse-end'}})
   };
-  fetch(`http://${window.location.host}/rounds/${gameRound}`, requestOptions)
+  fetch(`${window.location.protocol}//${window.location.host}/rounds/${gameRound}`, requestOptions)
     .catch(error => console.log('error', error));
 }
 

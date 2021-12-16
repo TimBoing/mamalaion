@@ -94,6 +94,9 @@ class RoundsQuickController < ApplicationController
     )
 
     RoundScoreComputer.new(round).call
+
+    response_hash = { response: "Updated round"}
+    render json: response_hash.to_json
   end
 
   private

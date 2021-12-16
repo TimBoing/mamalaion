@@ -1,5 +1,8 @@
 import { displayPageContentOnInfoModal } from './game_view';
 import { displayPageContent } from './game_view';
+import { getPageContent } from '../ajax/getPageContent';
+import { createVisitedPage } from '../ajax/createVisitedPage';
+import { updateRound } from '../ajax/updateRound';
 
 const gameInfo = document.getElementById('game-info');
 
@@ -13,35 +16,13 @@ const visitedPagesSetter = (visitedPagesUpdated) => {
 }
 
 const addVisitedPageToDatabase = (page) => {
-  if(visitedPages[visitedPages.length - 1] !== page){visitedPages.push(page);};
   const gameParticipation = gameInfo.dataset.participation;
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify({visited_page:{title:`${page}`}})
-  };
-  fetch(`http://${window.location.host}/round_participations/${gameParticipation}/visited_pages`, requestOptions)
-    .catch(error => console.log('error', error));
+  createVisitedPage(page, gameParticipation);
 };
 
 const requestEndPageContent = (page) => {
-  const language = gameInfo.dataset.language
-  const requestOptions = {
-    method: 'GET',
-    redirect: 'follow'
-  };
-  if (language === "fr") {
-    fetch(`https://fr.wikipedia.org/api/rest_v1/page/html/${page}`, requestOptions)
-      .then(response => response.text())
-      .then(result => displayPageContentOnInfoModal(result));
-  } else {
-    fetch(`https://en.wikipedia.org/api/rest_v1/page/html/${page}`, requestOptions)
-      .then(response => response.text())
-      .then(result => displayPageContentOnInfoModal(result));
-  }
+  const language = gameInfo.dataset.language;
+  getPageContent(page, language, displayPageContentOnInfoModal);
 };
 
 
@@ -60,20 +41,8 @@ const requestPageContent = (page) => {
       alert("Tu ne peux pas accéder à cette page!");
     }
   }
+  getPageContent(page, language, displayTitleAndContent);
 
-  const requestOptions = {
-    method: 'GET',
-    redirect: 'follow'
-  };
-  if (language === "fr") {
-    fetch(`https://fr.wikipedia.org/api/rest_v1/page/html/${page}`, requestOptions)
-      .then(response => response.text())
-      .then(result => displayTitleAndContent(result));
-  } else {
-    fetch(`https://en.wikipedia.org/api/rest_v1/page/html/${page}`, requestOptions)
-      .then(response => response.text())
-      .then(result => displayTitleAndContent(result));
-  }
 };
 
 
@@ -81,32 +50,9 @@ const notifyRoundEnded = () => {
   console.log("I am in notifyRoundEnded");
   const gameRound = gameInfo.dataset.round;
   const gameOptions = gameInfo.dataset.options
+  const winner =  gameInfo.dataset.winner
 
-  if(gameOptions == "Standard") {
-    const requestOptions = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({state: 'ended', winner: gameInfo.dataset.winner})
-    };
-    fetch(`http://${window.location.host}/rounds/${gameRound}`, requestOptions)
-      .catch(error => console.log('error', error));
-  } else {
-    const requestOptions = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({state: 'ended', winner: gameInfo.dataset.winner})
-    };
-    fetch(`https://${window.location.host}/rounds_quick/${gameRound}`, requestOptions).catch(error => {
-      console.log('error', error);
-      fetch(`http://${window.location.host}/rounds_quick/${gameRound}`, requestOptions).catch(e => console.log(e));
-    });
-  }
+  updateRound(gameOptions, gameRound, winner);
 
 }
 

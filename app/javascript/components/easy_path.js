@@ -14,7 +14,9 @@ const defineEasyPath = () => {
         'Accept': 'application/json'
       }
     }
-    fetch(`http://${window.location.host}/path?${start_end}`, requestOptions)
+    fetch(`https://${window.location.host}/path?${start_end}`, requestOptions).catch( e => {
+      fetch(`http://${window.location.host}/path?${start_end}`, requestOptions)
+    })
       .then(response => response.json())
       .then((data) => {
 
@@ -52,7 +54,9 @@ const defineEasyPath = () => {
             'Accept': 'application/json'
           }
         }
-        fetch(`http://${window.location.host}/path?${locale}`, requestOptions)
+        fetch(`https://${window.location.host}/path?${locale}`, requestOptions).catch( e => {
+          fetch(`http://${window.location.host}/path?${locale}`, requestOptions)
+        })
         .then(response => response.json())
         .then((data) => {
 

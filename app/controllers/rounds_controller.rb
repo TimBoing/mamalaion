@@ -99,6 +99,9 @@ class RoundsController < ApplicationController
       )
 
       RoundScoreComputer.new(round).call
+
+    response_hash = { response: "Updated round"}
+    render json: response_hash.to_json
     end
 
     unless params[:malus].nil?

@@ -1,3 +1,5 @@
+import { getVisitedPages } from '../ajax/getVisitedPages';
+
 const gamePath = () => {
   const pathIconContainer = document.getElementById("path-icon-container");
 
@@ -8,28 +10,18 @@ const gamePath = () => {
     const gameInfo = document.getElementById("game-info");
     const roundParticipationId = gameInfo.dataset.participation;
 
+    const displayPages = (data) => {
+      const pathPoints = document.querySelectorAll(".path-point");
+
+      if(pathPoints) pathPoints.forEach( item => item.remove());
+      Object.keys(data.visited_page).forEach(function (item) {
+        pathBeginning.insertAdjacentHTML('afterbegin', `<div class="path-point">${data.visited_page[item].title}</div><i class="fas fa-arrow-up"></i>`);
+      });
+    }
+
     pathIconContainer.addEventListener('click', (event) => {
       pathBeginning.innerHTML = "";
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      }
-      fetch(`http://${window.location.host}//round_participations/${roundParticipationId}/visited_pages`, requestOptions)
-        .then(response => response.json())
-        .then((data) => {
-          const pathPoints = document.querySelectorAll(".path-point");
-          if (pathPoints) {
-            pathPoints.forEach(function (item) {
-              item.remove();
-            });
-          };
-          Object.keys(data.visited_page).forEach(function (item) {
-            pathBeginning.insertAdjacentHTML('afterbegin', `<div class="path-point">${data.visited_page[item].title}</div><i class="fas fa-arrow-up"></i>`);
-          });
-      });
+      getVisitedPages(roundParticipationId, displayPages);
       modalGamePath.style.display = "block";
     });
 
